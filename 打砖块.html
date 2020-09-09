@@ -8,6 +8,8 @@
     <style>
         canvas {
             border: 1px black solid;
+            background-image: url(./wicher.png);
+            background-size: 100% 100%;
         }
     </style>
 </head>
@@ -30,7 +32,7 @@
                 image: image,
                 x: 100,
                 y: 200,
-                speed: 5,
+                speed: 10,
             }
             o.moveLeft = function () {
                 o.x -= o.speed
@@ -38,8 +40,50 @@
             o.moveRight = function () {
                 o.x += o.speed
             }
+            o.collide = function(p) {
+                if (p.y + p.image.height >= o.y) {
+                    if (p.x > o.x && p.x < o.x + o.image.width){
+                        log("相撞")
+                        return true
+                    }
+                }
+
+                return false
+            }
+                return o
+        }
+        
+
+        var Ball = function () {
+            // 初始化挡板
+            var image = imageFromPath("ball.png")
+            var o = {
+                image: image,
+                x: 0,
+                y: 0,
+                speedX: 15,
+                speedY: 15,
+                fired: false,
+            }
+            o.move = function () {
+                if (o.fired) {
+                    if (o.x < 0 || o.x > 400) {
+                        o.speedX = -o.speedX
+                    }
+                    if (o.y < 0 || o.y > 300) {
+                        o.speedY = -o.speedY
+                    }
+                    // move
+                    o.x += o.speedX
+                    o.y += o.speedY
+                }
+            }
+            o.fire = function () {
+                o.fired = true
+            }
             return o
         }
+
 
         var Game = function () {
             // 初始化大地图, 游戏世界之类的
@@ -51,9 +95,14 @@
             var context = canvas.getContext("2d")
             g.canvas = canvas
             g.context = context
-            g.drawImage = function(p){
-                g.context.clearRect(0, 0, g.canvas.width, g.canvas.height)
+            g.drawImage = function (p) {
                 g.context.drawImage(p.image, p.x, p.y)
+            }
+            g.registerAction = function (key, callback) {
+                g.actions[key] = callback
+            }
+            g.clear = function () {
+                g.context.clearRect(0, 0, g.canvas.width, g.canvas.height)
             }
             //events
             window.addEventListener("keydown", function (event) {
@@ -62,9 +111,6 @@
             window.addEventListener("keyup", function (event) {
                 g.keydonws[event.key] = false
             })
-            g.registerAction = function (key, callback) {
-                g.actions[key] = callback
-            }
             // timer
             setInterval(function () {
                 var actions = Object.keys(g.actions)
@@ -74,15 +120,18 @@
                         g.actions[key]()
                     }
                 }
+                g.update()
+                g.clear()
                 g.draw()
 
-            }, 1000 / 60)
+            }, 1000 / 24)
 
             return g
         }
 
         var __main = function () {
             var paddle = Paddle()
+            var ball = Ball()
             var game = Game()
             game.registerAction("a", function () {
                 paddle.moveLeft()
@@ -90,11 +139,20 @@
             game.registerAction("d", function () {
                 paddle.moveRight()
             })
-            // game.draw = function () {
-            //     game.context.drawImage(paddle.image, paddle.x, paddle.y)
-            // }
+            game.registerAction("f", function () {
+                ball.fire()
+            })
+
+            game.update = function () {
+                ball.move()
+                if (paddle.collide(ball)) {
+                    ball.speedY = -ball.speedY
+                }
+            }
+
             game.draw = function () {
                 game.drawImage(paddle)
+                game.drawImage(ball)
             }
         }
         __main()
