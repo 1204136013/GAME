@@ -43,57 +43,59 @@
 
         var Game = function () {
             // 初始化大地图, 游戏世界之类的
-            var g = {}
+            var g = {
+                actions: {},
+                keydonws: {},
+            }
             var canvas = document.querySelector("#id-canvas")
             var context = canvas.getContext("2d")
             g.canvas = canvas
             g.context = context
+            g.drawImage = function(p){
+                g.context.clearRect(0, 0, g.canvas.width, g.canvas.height)
+                g.context.drawImage(p.image, p.x, p.y)
+            }
+            //events
+            window.addEventListener("keydown", function (event) {
+                g.keydonws[event.key] = true
+            })
+            window.addEventListener("keyup", function (event) {
+                g.keydonws[event.key] = false
+            })
+            g.registerAction = function (key, callback) {
+                g.actions[key] = callback
+            }
+            // timer
             setInterval(function () {
-                g.update()
-                g.clear()
+                var actions = Object.keys(g.actions)
+                for (var i = 0; i < actions.length; i++) {
+                    var key = actions[i]
+                    if (g.keydonws[key]) {
+                        g.actions[key]()
+                    }
+                }
                 g.draw()
+
             }, 1000 / 60)
+
             return g
         }
 
         var __main = function () {
-
-            var leftDown = false
-            var rightDown = false
             var paddle = Paddle()
             var game = Game()
-            game.update = function() {
-                if (leftDown) {
-                    paddle.moveLeft()
-                } else if(rightDown){
-                    paddle.moveRight()
-                }
-
-            }
-            game.clear = function() {
-                game.context.clearRect(0, 0, game.canvas.width, game.canvas.height)
-            }
-            game.draw = function() {
-                game.context.drawImage(paddle.image, paddle.x, paddle.y)
-            }
-            window.addEventListener("keydown", function (event) {
-                log("keydown")
-                var k = event.key
-                if (k === "a") {
-                    leftDown = true
-                } else if (k == "d") {
-                    rightDown = true
-                }
+            game.registerAction("a", function () {
+                paddle.moveLeft()
             })
-            window.addEventListener("keyup", function (event) {
-                log("keyup")
-                var k = event.key
-                if (k === "a") {
-                    leftDown = false
-                } else if (k == "d") {
-                    rightDown = false
-                }
+            game.registerAction("d", function () {
+                paddle.moveRight()
             })
+            // game.draw = function () {
+            //     game.context.drawImage(paddle.image, paddle.x, paddle.y)
+            // }
+            game.draw = function () {
+                game.drawImage(paddle)
+            }
         }
         __main()
     </script>
