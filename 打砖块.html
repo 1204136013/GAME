@@ -31,28 +31,35 @@
             var o = {
                 image: image,
                 x: 100,
-                y: 200,
+                y: 250,
                 speed: 10,
             }
             o.moveLeft = function () {
                 o.x -= o.speed
+                if (o.x < 0) {
+                    o.x = 0
+                }
             }
             o.moveRight = function () {
                 o.x += o.speed
-            }
-            o.collide = function(p) {
-                if (p.y + p.image.height >= o.y) {
-                    if (p.x > o.x && p.x < o.x + o.image.width){
-                        log("相撞")
-                        return true
-                    }
+                if (o.x > 400 - o.image.width) {
+                    o.x = 400 - o.image.width
                 }
-
-                return false
             }
-                return o
+            // o.collide = function (b) {
+            //     if (b.y > o.y && b.y < o.y + o.image.height ) {
+            //         if (b.x > o.x && b.x < o.x + o.image.width) {
+            //             log("相撞")
+            //             return true
+            //         }
+            //     }
+            //     return false
+            // }
+            o.collide = function (b) {
+                return recIntersects(o, b) || recIntersects(b, o)
+            }
+            return o
         }
-        
 
         var Ball = function () {
             // 初始化挡板
@@ -61,8 +68,8 @@
                 image: image,
                 x: 0,
                 y: 0,
-                speedX: 15,
-                speedY: 15,
+                speedX: 5,
+                speedY: 5,
                 fired: false,
             }
             o.move = function () {
@@ -81,11 +88,50 @@
             o.fire = function () {
                 o.fired = true
             }
+            o.revert = function () {
+                o.speedY = -o.speedY
+            }
             return o
         }
 
+        var Block = function () {
+            var image = imageFromPath("block.png")
+            var o = {
+                image: image,
+                x: 100,
+                y: 100,
+                w: 50,
+                h: 20,
+                alive: true,
+            }
+            o.kill = function () {
+                o.alive = false
+            }
+            o.collide = function (p) {
+                if (o.alive) {
+                    return recIntersects(o, p) || recIntersects(p, o)
+                }
+                else {
+                    return false
+                }
+            }
+            return o
+        }
 
-        var Game = function () {
+        var recIntersects = function (a, b) {
+            // var o = a
+            // if (b.y > o.y && b.y < o.y + o.image.height) {
+            //     if (b.x > o.x && b.x < o.x + o.image.width) {
+            //         log("相撞")
+            //         return true
+            //     }
+            // }
+            // return false
+            no = a.y + a.image.height < b.y || a.x + a.image.width < b.x || b.y + b.image.height < a.y || b.x + b.image.width < a.x
+            return !no
+        }
+
+        var Game = function (fps) {
             // 初始化大地图, 游戏世界之类的
             var g = {
                 actions: {},
@@ -124,7 +170,7 @@
                 g.clear()
                 g.draw()
 
-            }, 1000 / 24)
+            }, 1000 / fps)
 
             return g
         }
@@ -132,7 +178,14 @@
         var __main = function () {
             var paddle = Paddle()
             var ball = Ball()
-            var game = Game()
+            var game = Game(45)
+            var blocks = []
+            for (var i = 0; i < 3; i++) {
+                var b = Block()
+                b.x = i * 60
+                blocks.push(b)
+            }
+            var block = Block()
             game.registerAction("a", function () {
                 paddle.moveLeft()
             })
@@ -145,17 +198,34 @@
 
             game.update = function () {
                 ball.move()
+                // 判断 ball 和 paddle 相撞
                 if (paddle.collide(ball)) {
-                    ball.speedY = -ball.speedY
+                    // ball.反弹()
+                    ball.revert()
+                }
+                // 判断 ball 和 blocks 相撞
+                for (var i = 0; i < blocks.length; i++) {
+                    var block = blocks[i]
+                    if (block.collide(ball)) {
+                        block.kill()
+                        ball.revert()
+                    }
                 }
             }
 
             game.draw = function () {
                 game.drawImage(paddle)
                 game.drawImage(ball)
+                for (var i = 0; i < blocks.length; i++) {
+                    var block = blocks[i]
+                    if (block.alive) {
+                        game.drawImage(block)
+                    }
+                }
+
             }
         }
-        
+
         __main()
     </script>
 </body>
