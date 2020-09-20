@@ -25,11 +25,8 @@ var Game = function (fps) {
         g.keydonws[event.key] = false
     })
     // timer
-    // var runloop = function (fps) {
-
-    // }
-
-    setInterval(function () {
+    window.fps = 45
+    var runloop = function () {
         var actions = Object.keys(g.actions)
         for (var i = 0; i < actions.length; i++) {
             var key = actions[i]
@@ -40,8 +37,14 @@ var Game = function (fps) {
         g.update()
         g.clear()
         g.draw()
+        setTimeout(function () {
+            runloop()
+        }, 1000 / window.fps)    
+    }
 
-    }, 1000 / fps)
+    setTimeout(function () {
+        runloop()
+    }, 1000 / window.fps)
 
     return g
 }
