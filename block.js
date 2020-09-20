@@ -1,9 +1,11 @@
-var Block = function () {
+var Block = function (postition) {
+    // position 格式为 [0, 0]
+    var p = postition
     var image = imageFromPath("./png/block.png")
     var o = {
         image: image,
-        x: 100,
-        y: 100,
+        x: p[0],
+        y: p[1],
         w: 50,
         h: 20,
         alive: true,

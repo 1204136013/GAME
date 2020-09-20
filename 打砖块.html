@@ -17,6 +17,7 @@
     <script src="./paddle.js"></script>
     <script src="./block.js"></script>
     <script src="./utils.js"></script>
+    <script src="./level.js"></script>
 
 </head>
 
@@ -31,17 +32,24 @@
             return img
         }
 
+        var loadLevel = function(n) {
+            blocks = []
+            n = n - 1
+            var level = levels[n]
+            for (var i = 0; i < level.length; i++) {
+                var p = level[i]
+                var b = Block(p)
+                blocks.push(b)
+            }
+            return blocks
+        }
+
         var __main = function () {
             var paddle = Paddle()
             var ball = Ball()
             var game = Game(45)
-            var blocks = []
-            for (var i = 0; i < 3; i++) {
-                var b = Block()
-                b.x = i * 60
-                blocks.push(b)
-            }
-            var block = Block()
+            var blocks = loadLevel(2)
+            var paused = false
             game.registerAction("a", function () {
                 paddle.moveLeft()
             })
@@ -52,7 +60,16 @@
                 ball.fire()
             })
 
+            window.addEventListener("keydown", function(event) {
+                if (event.key == "p") {
+                    paused = !paused
+                }
+            })
+
             game.update = function () {
+                if (paused) {
+                    return
+                }
                 ball.move()
                 // 判断 ball 和 paddle 相撞
                 if (paddle.collide(ball)) {
