@@ -25,6 +25,10 @@ var Game = function (fps) {
         g.keydonws[event.key] = false
     })
     // timer
+    // var runloop = function (fps) {
+
+    // }
+
     setInterval(function () {
         var actions = Object.keys(g.actions)
         for (var i = 0; i < actions.length; i++) {

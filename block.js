@@ -9,10 +9,18 @@ var Block = function (postition) {
         w: 50,
         h: 20,
         alive: true,
+        lifes: p[2] || 1,
     }
+
     o.kill = function () {
-        o.alive = false
+        o.lifes = o.lifes - 1
+        log("life -1")
+        if (o.lifes < 1) {
+            log("killed")
+            o.alive = false
+        }
     }
+
     o.collide = function (p) {
         if (o.alive) {
             return recIntersects(o, p) || recIntersects(p, o)

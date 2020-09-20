@@ -44,12 +44,29 @@
             return blocks
         }
 
+
         var __main = function () {
             var paddle = Paddle()
             var ball = Ball()
             var game = Game(45)
-            // var blocks = loadLevel(2)
+            var blocks = loadLevel(1)
             var paused = false
+
+            var enableDebugMode = function (enable) {
+            if (!enable) {
+                return
+            }
+            log("debug 开启")
+            window.addEventListener("keydown", function(event) {
+                var k = event.key
+                if (k == "p") {
+                    paused = !paused
+                } else if ("1234567".includes(k)) {
+                    blocks = loadLevel(Number(k))
+                }
+            })
+            }
+
             game.registerAction("a", function () {
                 paddle.moveLeft()
             })
@@ -60,14 +77,8 @@
                 ball.fire()
             })
 
-            window.addEventListener("keydown", function(event) {
-                var k = event.key
-                if (event.key == "p") {
-                    paused = !paused
-                } else if ("1234567".includes(k)) {
-                    blocks = loadLevel(Number(k))
-            }})
-
+            enableDebugMode(true)
+            log("paused", paused)
             game.update = function () {
                 if (paused) {
                     return
