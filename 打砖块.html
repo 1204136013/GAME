@@ -23,6 +23,8 @@
 
 <body>
     <canvas id="id-canvas" width="400" height="300"></canvas>
+    <hr>
+    <input type="range" id="id-input-speed" value="1">
     <script>
         var log = console.log.bind(console)
 
@@ -32,7 +34,7 @@
             return img
         }
 
-        var loadLevel = function(n) {
+        var loadLevel = function (n) {
             blocks = []
             n = n - 1
             var level = levels[n]
@@ -53,18 +55,26 @@
             var paused = false
 
             var enableDebugMode = function (enable) {
-            if (!enable) {
-                return
-            }
-            log("debug 开启")
-            window.addEventListener("keydown", function(event) {
-                var k = event.key
-                if (k == "p") {
-                    paused = !paused
-                } else if ("1234567".includes(k)) {
-                    blocks = loadLevel(Number(k))
+                if (!enable) {
+                    return
                 }
-            })
+                log("debug 开启")
+                window.addEventListener("keydown", function (event) {
+                    var k = event.key
+                    if (k == "p") {
+                        // 暂停功能
+                        paused = !paused
+                    } else if ("1234567".includes(k)) {
+                        // 临时载入关卡
+                        blocks = loadLevel(Number(k))
+                    }
+                })
+                document.querySelector("#id-input-speed").addEventListener("input", function (event) {
+                    var input = event.target
+                    log("fps", input.value)
+                    // input.value 最低是 0 所以 + 1
+                    window.fps = Number(input.value) + 1
+                })
             }
 
             game.registerAction("a", function () {
