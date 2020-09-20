@@ -1,6 +1,6 @@
 var Paddle = function () {
     // 初始化挡板
-    var image = imageFromPath("paddle.png")
+    var image = imageFromPath("./png/paddle.png")
     var o = {
         image: image,
         x: 100,

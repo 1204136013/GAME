@@ -1,6 +1,6 @@
 var Ball = function () {
     // 初始化挡板
-    var image = imageFromPath("ball.png")
+    var image = imageFromPath("./png/ball.png")
     var o = {
         image: image,
         x: 0,
