@@ -12,6 +12,10 @@
             background-size: 100% 100%;
         }
     </style>
+    <script src="./game.js"></script>
+    <script src="./ball.js"></script>
+    <script src="./paddle.js"></script>
+    <script src="./block.js"></script>
 </head>
 
 <body>
@@ -23,99 +27,6 @@
             var img = new Image()
             img.src = path
             return img
-        }
-
-        var Paddle = function () {
-            // 初始化挡板
-            var image = imageFromPath("paddle.png")
-            var o = {
-                image: image,
-                x: 100,
-                y: 250,
-                speed: 10,
-            }
-            o.moveLeft = function () {
-                o.x -= o.speed
-                if (o.x < 0) {
-                    o.x = 0
-                }
-            }
-            o.moveRight = function () {
-                o.x += o.speed
-                if (o.x > 400 - o.image.width) {
-                    o.x = 400 - o.image.width
-                }
-            }
-            // o.collide = function (b) {
-            //     if (b.y > o.y && b.y < o.y + o.image.height ) {
-            //         if (b.x > o.x && b.x < o.x + o.image.width) {
-            //             log("相撞")
-            //             return true
-            //         }
-            //     }
-            //     return false
-            // }
-            o.collide = function (b) {
-                return recIntersects(o, b) || recIntersects(b, o)
-            }
-            return o
-        }
-
-        var Ball = function () {
-            // 初始化挡板
-            var image = imageFromPath("ball.png")
-            var o = {
-                image: image,
-                x: 0,
-                y: 0,
-                speedX: 5,
-                speedY: 5,
-                fired: false,
-            }
-            o.move = function () {
-                if (o.fired) {
-                    if (o.x < 0 || o.x > 400) {
-                        o.speedX = -o.speedX
-                    }
-                    if (o.y < 0 || o.y > 300) {
-                        o.speedY = -o.speedY
-                    }
-                    // move
-                    o.x += o.speedX
-                    o.y += o.speedY
-                }
-            }
-            o.fire = function () {
-                o.fired = true
-            }
-            o.revert = function () {
-                o.speedY = -o.speedY
-            }
-            return o
-        }
-
-        var Block = function () {
-            var image = imageFromPath("block.png")
-            var o = {
-                image: image,
-                x: 100,
-                y: 100,
-                w: 50,
-                h: 20,
-                alive: true,
-            }
-            o.kill = function () {
-                o.alive = false
-            }
-            o.collide = function (p) {
-                if (o.alive) {
-                    return recIntersects(o, p) || recIntersects(p, o)
-                }
-                else {
-                    return false
-                }
-            }
-            return o
         }
 
         var recIntersects = function (a, b) {
@@ -131,49 +42,6 @@
             return !no
         }
 
-        var Game = function (fps) {
-            // 初始化大地图, 游戏世界之类的
-            var g = {
-                actions: {},
-                keydonws: {},
-            }
-            var canvas = document.querySelector("#id-canvas")
-            var context = canvas.getContext("2d")
-            g.canvas = canvas
-            g.context = context
-            g.drawImage = function (p) {
-                g.context.drawImage(p.image, p.x, p.y)
-            }
-            g.registerAction = function (key, callback) {
-                g.actions[key] = callback
-            }
-            g.clear = function () {
-                g.context.clearRect(0, 0, g.canvas.width, g.canvas.height)
-            }
-            //events
-            window.addEventListener("keydown", function (event) {
-                g.keydonws[event.key] = true
-            })
-            window.addEventListener("keyup", function (event) {
-                g.keydonws[event.key] = false
-            })
-            // timer
-            setInterval(function () {
-                var actions = Object.keys(g.actions)
-                for (var i = 0; i < actions.length; i++) {
-                    var key = actions[i]
-                    if (g.keydonws[key]) {
-                        g.actions[key]()
-                    }
-                }
-                g.update()
-                g.clear()
-                g.draw()
-
-            }, 1000 / fps)
-
-            return g
-        }
 
         var __main = function () {
             var paddle = Paddle()
