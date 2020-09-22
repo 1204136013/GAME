@@ -1,5 +1,7 @@
-var Game = function (fps) {
+var Game = function (fps, loads) {
     // 初始化大地图, 游戏世界之类的
+    // lodas 是一个数组， 里面是图片的名字
+    // 程序会在所有图片载入完成后开始运行
     var g = {
         actions: {},
         keydonws: {},
