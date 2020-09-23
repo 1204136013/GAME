@@ -54,9 +54,9 @@ var Game = function (fps, images) {
             // 所有图片载入成功后，调用 run
             loads.push(1)
             if (loads.length == images.length) {
+                log("loaded image")
                 g.run()
             }
-
         }
     }
     // 开始运行
