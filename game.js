@@ -1,10 +1,11 @@
 var Game = function (fps, images) {
     // 初始化大地图, 游戏世界之类的
-    // images 是一个数组， 里面是图片的名字
+    // images 是一个对象， 里面是图片的引用名 和 路径
     // 程序会在所有图片载入完成后开始运行
     var g = {
         actions: {},
         keydonws: {},
+        images: {},
     }
     var canvas = document.querySelector("#id-canvas")
     var context = canvas.getContext("2d")
@@ -46,19 +47,32 @@ var Game = function (fps, images) {
 
     var loads = []
     // 预先载入所有图片
-    for (var i = 0; i < images.length; i++) {
-        var path = images[i];
+    var names = Object.keys(images)
+    for (var i = 0; i < names.length; i++) {
+        var name = names[i]
+        var path = images[name];
         var img = new Image()
         img.src = path
         img.onload = function () {
+            g.images[name] = img
             // 所有图片载入成功后，调用 run
             loads.push(1)
-            if (loads.length == images.length) {
-                log("loaded image")
+            if (loads.length == names.length) {
                 g.run()
             }
         }
     }
+
+    g.imageByName = function(name) {
+        var img = g.images[name]
+        var image = {
+            w: img.width,
+            h: img.height,
+            image: img,
+        }
+        return image
+    }
+
     // 开始运行
     g.run = function() {
         setTimeout(function () {

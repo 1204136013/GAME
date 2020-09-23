@@ -1,12 +1,16 @@
-var Paddle = function () {
+var Paddle = function (game) {
     // 初始化挡板
-    var image = imageFromPath("./png/paddle.png")
-    var o = {
-        image: image,
-        x: 100,
-        y: 250,
-        speed: 10,
-    }
+    // var image = imageFromPath("./png/paddle.png")
+    // var o = {
+    //     image: image,
+    //     x: 100,
+    //     y: 250,
+    //     speed: 10,
+    // }
+    var o = game.imageByName("paddle")
+    o.x = 100
+    o.y = 250
+    o.speed = 10
     o.moveLeft = function () {
         o.x -= o.speed
         if (o.x < 0) {

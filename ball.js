@@ -1,14 +1,20 @@
-var Ball = function () {
+var Ball = function (game) {
     // 初始化挡板
-    var image = imageFromPath("./png/ball.png")
-    var o = {
-        image: image,
-        x: 0,
-        y: 0,
-        speedX: 5,
-        speedY: 5,
-        fired: false,
-    }
+    // var image = imageFromPath("./png/ball.png")
+    // var o = {
+    //     image: image,
+    //     x: 0,
+    //     y: 0,
+    //     speedX: 5,
+    //     speedY: 5,
+    //     fired: false,
+    // }
+    var o = game.imageByName("ball")
+    o.x = 0,
+    o.y = 0,
+    o.speedX = 5
+    o.speedY = 5
+    o.fired = false
     o.move = function () {
         if (o.fired) {
             if (o.x < 0 || o.x > 400) {

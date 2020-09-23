@@ -13,11 +13,11 @@ var loadLevel = function (n) {
 
 
 var __main = function () {
-    var images = [
-        "./png/ball.png",
-        "./png/block.png",
-        "./png/paddle.png",
-    ]
+    var images = {
+        ball: "./png/ball.png",
+        block: "./png/block.png",
+        paddle: "./png/paddle.png",
+    }
     var paddle = Paddle()
     var ball = Ball()
     var game = Game(45, images)
