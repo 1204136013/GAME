@@ -1,4 +1,4 @@
-var Game = function (fps, images) {
+var Game = function (fps, images, callback) {
     // 初始化大地图, 游戏世界之类的
     // images 是一个对象， 里面是图片的引用名 和 路径
     // 程序会在所有图片载入完成后开始运行
@@ -49,9 +49,9 @@ var Game = function (fps, images) {
     // 预先载入所有图片
     var names = Object.keys(images)
     for (var i = 0; i < names.length; i++) {
-        var name = names[i]
+        let name = names[i]
         var path = images[name];
-        var img = new Image()
+        let img = new Image()
         img.src = path
         img.onload = function () {
             g.images[name] = img
@@ -64,6 +64,9 @@ var Game = function (fps, images) {
     }
 
     g.imageByName = function(name) {
+        log("g")
+        log(name)
+        log(g.images)
         var img = g.images[name]
         var image = {
             w: img.width,
@@ -75,6 +78,7 @@ var Game = function (fps, images) {
 
     // 开始运行
     g.run = function() {
+        callback()
         setTimeout(function () {
             runloop()
         }, 1000 / window.fps)
