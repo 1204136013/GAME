@@ -1,6 +1,6 @@
-var Game = function (fps, loads) {
+var Game = function (fps, images) {
     // 初始化大地图, 游戏世界之类的
-    // lodas 是一个数组， 里面是图片的名字
+    // images 是一个数组， 里面是图片的名字
     // 程序会在所有图片载入完成后开始运行
     var g = {
         actions: {},
@@ -44,9 +44,28 @@ var Game = function (fps, loads) {
         }, 1000 / window.fps)
     }
 
-    setTimeout(function () {
-        runloop()
-    }, 1000 / window.fps)
+    var loads = []
+    // 预先载入所有图片
+    for (var i = 0; i < images.length; i++) {
+        var path = images[i];
+        var img = new Image()
+        img.src = path
+        img.onload = function () {
+            // 所有图片载入成功后，调用 run
+            loads.push(1)
+            if (loads.length == images.length) {
+                g.run()
+            }
+
+        }
+    }
+    // 开始运行
+    g.run = function() {
+        setTimeout(function () {
+            runloop()
+        }, 1000 / window.fps)
+    
+    }
 
     return g
 }
