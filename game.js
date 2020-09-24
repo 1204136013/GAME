@@ -63,7 +63,7 @@ var Game = function (fps, images, callback) {
         }
     }
 
-    g.imageByName = function(name) {
+    g.imageByName = function (name) {
         log("g")
         log(name)
         log(g.images)
@@ -77,12 +77,12 @@ var Game = function (fps, images, callback) {
     }
 
     // 开始运行
-    g.run = function() {
+    g.run = function () {
         callback()
         setTimeout(function () {
             runloop()
         }, 1000 / window.fps)
-    
+
     }
 
     return g

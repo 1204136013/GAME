@@ -10,8 +10,8 @@ var Ball = function (game) {
     //     fired: false,
     // }
     var o = game.imageByName("ball")
-    o.x = 0,
-    o.y = 0,
+    o.x = 0
+    o.y = 0
     o.speedX = 5
     o.speedY = 5
     o.fired = false
@@ -33,6 +33,16 @@ var Ball = function (game) {
     }
     o.revert = function () {
         o.speedY = -o.speedY
+    }
+    o.hasPoint = function(x, y) {
+        // 有一个点在ball这个矩形里面
+        log("mouseX", x)
+        log("mouseY", y)
+
+        var xIn = x >= o.x && x <= o.x + o.w
+        var yIn = y >= o.y && y <= o.y + o.h
+
+        return xIn && yIn
     }
     return o
 }
