@@ -27,9 +27,9 @@ var Block = function (game, postition) {
         }
     }
 
-    o.collide = function (p) {
+    o.collide = function (b) {
         if (o.alive) {
-            return recIntersects(o, p) || recIntersects(p, o)
+            return recIntersects(o, b) || recIntersects(b, o)
         }
         else {
             return false
