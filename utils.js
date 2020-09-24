@@ -5,9 +5,11 @@ var recIntersects = function (a, b) {
 
 var e = sel => document.querySelector(sel)
 
-var log = function (s) {
-    e("#id-text-log").value += "\n" + s
-}
+// var log = function (s) {
+//     e("#id-text-log").value += "\n" + s
+// }
+
+var log = console.log.bind(console)
 
 var imageFromPath = function (path) {
     var img = new Image()
