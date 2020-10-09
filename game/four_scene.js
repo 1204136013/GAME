@@ -5,6 +5,11 @@ class FourScene {
     draw() {
 
     }
+    static new(game) {
+        var i = new this(game)
+        return i 
+    }
+
     update() {
 
     }   

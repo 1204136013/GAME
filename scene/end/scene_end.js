@@ -35,10 +35,7 @@ class SceneEnd extends FourScene {
             game.replaceScene(s)
         })
     }
-    static new(game) {
-        var i = new this(game)
-        return i
-    }
+    
     draw() {
         var gradient = this.game.context.createLinearGradient(0, 0, 400, 0);
         gradient.addColorStop("0", "magenta");
