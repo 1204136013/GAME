@@ -44,7 +44,7 @@ var __main = function () {
     }
     // var scene = Scene(game)
 
-    var game = Game(30, images, function(g){
+    var game = Game.instance(45, images, function(g){
         var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
