@@ -16,7 +16,3 @@ var imageFromPath = function (path) {
     img.src = path
     return img
 }
-
-var imageByName = function (name) {
-    
-}

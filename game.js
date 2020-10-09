@@ -1,8 +1,9 @@
-var Game = function (fps, images, callback) {
+var Game = function (fps, images, call) {
     // 初始化大地图, 游戏世界之类的
     // images 是一个对象， 里面是图片的引用名 和 路径
     // 程序会在所有图片载入完成后开始运行
     var g = {
+        scene: null,
         actions: {},
         keydonws: {},
         images: {},
@@ -20,6 +21,16 @@ var Game = function (fps, images, callback) {
     g.clear = function () {
         g.context.clearRect(0, 0, g.canvas.width, g.canvas.height)
     }
+    g.update = function() {
+        g.scene.update()
+    }
+    g.draw = function() {
+        g.scene.draw()
+    }
+    g.replaceScene = function(scene) {
+        g.scene = scene
+    }
+
     //events
     window.addEventListener("keydown", function (event) {
         g.keydonws[event.key] = true
@@ -77,12 +88,15 @@ var Game = function (fps, images, callback) {
     }
 
     // 开始运行
-    g.run = function () {
-        callback()
+    g.runWithScene = function (scene) {
+        // call(g)
+        g.scene = scene
         setTimeout(function () {
             runloop()
         }, 1000 / window.fps)
-
+    }
+    g.run = function(scene) {
+        call(g)
     }
 
     return g
