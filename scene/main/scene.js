@@ -86,7 +86,7 @@ var Scene = function (game) {
         // 判断游戏结束
         if (ball.y > paddle.y) {
             // 替换场景到游戏结束
-            var end  = SceneEnd(game)
+            var end  = SceneEnd.new(game)
             game.replaceScene(end)
 
         }
