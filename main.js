@@ -45,7 +45,7 @@ var __main = function () {
     // var scene = Scene(game)
 
     var game = Game(30, images, function(g){
-        var s = SceneTitle(g)
+        var s = new SceneTitle(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)

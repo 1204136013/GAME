@@ -1,3 +1,16 @@
+class FourScene {
+    constructor(game) {
+        this.game = game
+    }
+    draw() {
+
+    }
+    update() {
+
+    }   
+}
+
+
 class SceneTitle extends FourScene {
     constructor(game) {
         super(game)
