@@ -3,9 +3,12 @@ var Scene = function (game) {
         game: game,
     }
     // 初始化
+    var level = 3
+    var level_max = levels.length
+    log("level_max", level_max)
     var ball = Ball(game)
     var paddle = Paddle(game)
-    var blocks = loadLevel(game, 2)
+    var blocks = loadLevel(game, level)
     var score = 0
 
     game.registerAction("a", function () {
@@ -105,6 +108,28 @@ var Scene = function (game) {
                 score = score + 100
             }
         }
+
+        // 如果所有砖块都打掉了, 载入下一关
+        var dead = 0
+        for (var i = 0; i < blocks.length; i++) {
+            var block = blocks[i]
+            if (!block.alive) {
+                dead = dead + 1
+            }
+        }
+        if (dead == blocks.length){
+            if (level < level_max){
+                log("所有砖块消灭了")
+                level = level + 1
+                log("载入", level, "关")
+                blocks = loadLevel(game, level)
+            }
+            else{
+                var success  = SceneSuccess.new(game)
+                game.replaceScene(success)
+                }
+        }
+        
 
     }
 
