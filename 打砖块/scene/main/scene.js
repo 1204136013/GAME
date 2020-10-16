@@ -3,7 +3,7 @@ var Scene = function (game) {
         game: game,
     }
     // 初始化
-    var level = 3
+    var level = 1
     var level_max = levels.length
     log("level_max", level_max)
     var ball = Ball(game)
@@ -55,7 +55,6 @@ var Scene = function (game) {
         // 取消拖拽状态
         enableDrag = false
     })
-
 
 
     s.draw = function () {

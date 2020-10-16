@@ -5,6 +5,11 @@ class SceneTitle extends FourScene {
             var s  = Scene(game)
             game.replaceScene(s)
             })
+        game.registerAction("b", function () {
+            var s  = SceneEdit.new(game)
+            game.replaceScene(s)
+            })
+
     }
 
     draw() {

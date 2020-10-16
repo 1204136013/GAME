@@ -13,3 +13,4 @@ var levels = [
     ],
 ]
 
+// [x, y, life]
