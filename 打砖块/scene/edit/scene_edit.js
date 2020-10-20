@@ -9,11 +9,19 @@ class SceneEdit extends FourScene {
         game.canvas.addEventListener("mousedown", (event) => {
             var x = event.offsetX
             var y = event.offsetY
-            log(x, y, "up")
-            log("this", this)
-            log("thisblock", this.block)
-            this.blocks.push(Block(game, [x, y]))
+            log("生成 block", x, y)
+            var p = [x, y]
+            var b = Block(game, p)
+            b.cell(x, y)
+            this.blocks.push(b)
+            levels[0].push(p)
         })
+
+        window.addEventListener("keydown", event => {
+            log(event.key)
+            log(levels)
+        })
+
     }
 
     draw() {
@@ -31,7 +39,4 @@ class SceneEdit extends FourScene {
     update() {
 
     }
-
-
-
 }

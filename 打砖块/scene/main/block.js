@@ -35,5 +35,11 @@ var Block = function (game, postition) {
             return false
         }
     }
+
+    o.cell = function (x, y) {
+        o.x = Math.floor(x/o.w) * o.w
+        o.y = Math.floor(y/o.h) * o.h
+    }
+
     return o
 }
