@@ -19,3 +19,10 @@ class FourImage {
 
     }   
 }
+
+// 逻辑上， 不应该继承 GuaImage
+// class Player extends FourImage{
+//     constructor(game, name) {
+        
+//     }
+// }

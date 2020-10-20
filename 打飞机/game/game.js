@@ -1,8 +1,8 @@
 class Game {
     constructor(fps, images, runCallback) {
         window.fps = fps
-        this.images = images,
-            this.runCallback = runCallback
+        this.images = images
+        this.runCallback = runCallback
 
         this.scene = null
         this.actions = {}
@@ -32,8 +32,9 @@ class Game {
     }
 
     drawImage(img) {
+        // img 是一个自定义的FourImge
         var p = img
-        this.context.drawImage(p.image, p.x, p.y)
+        this.context.drawImage(p.texture, p.x, p.y)
     }
 
     update = () => {
@@ -61,7 +62,7 @@ class Game {
         //     h: img.height,
         //     image: img,
         // }
-        return image
+        return img
     }
 
     runloop = () => {

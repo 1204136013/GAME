@@ -40,9 +40,6 @@ var enableDebugMode = function (game,enable) {
 
 var __main = function () {
     var images = {
-        ball: "./png/ball.png",
-        block: "./png/block.png",
-        paddle: "./png/paddle.png",
         bullet: "./png/bullet.png",
         cloud: "./png/cloud.png",
         player: "./png/player.png",
@@ -51,7 +48,7 @@ var __main = function () {
     // var scene = Scene(game)
 
     var game = Game.instance(45, images, function(g){
-        var s = SceneTitle.new(g)
+        var s = Scene.new(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)
