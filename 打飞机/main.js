@@ -44,6 +44,12 @@ var __main = function () {
         cloud: "./png/cloud.png",
         player: "./png/player.png",
         sky: "./png/sky.png",
+        enemy0: "./png/enemy0.png",
+        enemy1: "./png/enemy1.png",
+        enemy2: "./png/enemy2.png",
+        enemy3: "./png/enemy3.png",
+        enemy4: "./png/enemy4.png",
+
     }
     // var scene = Scene(game)
 

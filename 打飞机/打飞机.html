@@ -32,14 +32,83 @@
 </head>
 
 <body>
-    <canvas id="id-canvas" width="400" height="300"></canvas>
+    <canvas id="id-canvas" width="400" height="600"></canvas>
     <hr>
     <input type="range" id="id-input-speed" value="1">
     <hr>
-    <div>
+    <!-- <div>
         <textarea name="" id="id-text-log" cols="50" rows="20"></textarea>
+    </div> -->
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            id=""
+            value=""
+            data-value="config.player_speed"
+            >
+            player speed : <span class="four-label"></span>
+        </label>
     </div>
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            id=""
+            value=""
+            data-value="config.bullet_speed"
+            >
+            bullet speed : <span class="four-label"></span>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            max="20"
+            id=""
+            value=""
+            data-value="config.fire_cooldown"
+            >
+            bullet cooldown : <span class="four-label"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            max="20"
+            id=""
+            value=""
+            min="-10"
+            data-value="config.cloud_speed"
+            >
+            cloud speed : <span class="four-label"></span>
+        </label>
+    </div>
+
     <script src="./main.js"></script>
+    <script>
+        var es = sel => document.querySelectorAll(sel)
+        var binAll = function(sel, eventName, callback){
+            var l = es(sel)
+            for (var i = 0; i<l.length; i++) {
+                var input = l[i]
+                input.addEventListener(eventName, function(event){
+                    callback(event)
+                })
+            }
+        }
+        binAll(".four-auto-slider", "input", function(event){
+            var target = event.target
+            var bindVar = target.dataset.value
+            var v = target.value
+            eval(bindVar + "=" + v)
+            var label = target.closest("label").querySelector(".four-label")
+            label.innerText = v
+        })
+    </script>
 
 </body>
 

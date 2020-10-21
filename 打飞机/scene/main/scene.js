@@ -1,41 +1,170 @@
+const config = {
+    player_speed: 10,
+    cloud_speed: 1,
+    enemy_speed: 3,
+    bullet_speed: 6,
+    fire_cooldown: 10,
+}
+
+class Bullet extends FourImage{
+    constructor(game){
+        super(game, "bullet")
+        this.setup()
+    }
+    setup() {
+        this.speed = 5
+    }
+    update() {
+        this.speed = config.bullet_speed
+        this.y -= this.speed
+    }
+}
+
+class Player extends FourImage {
+    constructor(game) {
+        super(game, "player")
+        this.setup()
+    }
+    update() {
+        this.speed = config.player_speed
+        if (this.cooldown > 0) {
+            this.cooldown--
+        }
+    }
+    setup() {
+        this.speed = 5
+        this.cooldown = 0
+    }
+    moveLeft() {
+        this.x -= this.speed
+    }
+    moveRight() {
+        this.x += this.speed
+    }
+    moveUp() {
+        this.y -= this.speed
+    }
+    moveDown() {
+        this.y += this.speed
+    }
+
+    fire() {
+        if (this.cooldown != 0) {
+            return
+        }
+        this.cooldown = config.fire_cooldown
+        var x = this.x + this.w/2
+        var y = this.y
+        var b = Bullet.new(this.game)
+        b.x = x
+        b.y = y
+        this.scene.addElement(b)
+    }
+}
+
+
+class Enemy extends FourImage {
+    constructor(game) {
+        var type = randomBetween(0, 4)
+        var name = "enemy" + type
+        super(game, name)
+        this.setup()
+    }
+    setup() {
+        this.speed = randomBetween(2, 3)
+        this.x = randomBetween(0, 350)
+        this.y = -randomBetween(0, 200)
+    }
+    update() {
+        this.y += this.speed
+        if (this.y > 600) {
+            this.setup()
+        }
+    }
+}
+
+class Cloud extends FourImage {
+    constructor(game) {
+        super(game, "cloud")
+        this.setup()
+    }
+    setup() {
+        this.x = randomBetween(0, 350)
+        this.y = -randomBetween(0, 200)
+    }
+    update() {
+        this.y += this.speed
+        if (this.y > 600) {
+            this.setup()
+        }
+    }
+    debug() {
+        this.speed = config.cloud_speed
+    }
+}
+
+
 class Scene extends FourScene {
     constructor(game) {
         super(game)
         this.setup()
+        this.setupInputs()
     }
 
-    // draw() {
-    //     // this.game.drawImage(this.bg)
-    //     // this.game.drawImage(this.player)
-    // }
-
     update() {
-        this.cloud.y += 1
-    }   
+        super.update()
+        // this.cloud.y += 1
+    }
 
     setup() {
+        this.numberOfEnemies = 10
         this.bg = FourImage.new(this.game, "sky")
-        this.player = FourImage.new(this.game, "player")
-        this.cloud = FourImage.new(this.game, "cloud")
-
+        this.cloud = Cloud.new(this.game, "cloud")
+        this.player = Player.new(this.game)
         this.player.x = 100
         this.player.y = 150
-        
+
         // 这里 push 的顺序需要注意, bg必须第一个， 不然会盖住其他图片
         this.addElement(this.bg)
         this.addElement(this.player)
         this.addElement(this.cloud)
 
-        // this.game.registerAction("a", function () {
-        //     paddle.moveLeft()
-        // })
-        // this.game.registerAction("d", function () {
-        //     paddle.moveRight()
-        // })
-        // this.game.registerAction("f", function () {
+        this.addEnemies()
+    }
+
+    addEnemies() {
+        var es = []
+        for(var i = 0; i<this.numberOfEnemies; i++) {
+            var e = Enemy.new(this.game)
+            es.push(e)
+            this.addElement(e)
+        }
+        this.enemies = es
+    }
+
+    setupInputs() {
+        var g = this.game
+        var s = this
+        g.registerAction("a", function () {
+            s.player.moveLeft()
+        })
+        g.registerAction("d", function () {
+            s.player.moveRight()
+        })
+        g.registerAction("w", function () {
+            s.player.moveUp()
+        })
+        g.registerAction("s", function () {
+            s.player.moveDown()
+        })
+        g.registerAction("j", function () {
+            s.player.fire()
+        })
+
+        // game.registerAction("f", function () {
         //     ball.fire()
         // })
-    
+
     }
 }
 
@@ -169,7 +298,7 @@ class Scene extends FourScene {
 //                 game.replaceScene(success)
 //                 }
 //         }
-        
+
 
 //     }
 
