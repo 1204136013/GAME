@@ -49,12 +49,13 @@ var __main = function () {
         enemy2: "./png/enemy2.png",
         enemy3: "./png/enemy3.png",
         enemy4: "./png/enemy4.png",
-
+        fire: "./png/fire.png",
     }
     // var scene = Scene(game)
 
     var game = Game.instance(45, images, function(g){
         var s = Scene.new(g)
+        // var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)

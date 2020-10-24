@@ -8,7 +8,7 @@ class FourImage {
         this.h = this.texture.height
     }
     draw() {
-
+        this.game.drawImage(this)
     }
     static new(game, name) {
         var i = new this(game, name)

@@ -110,8 +110,6 @@ class Game {
             let img = new Image()
             img.src = path
             img.onload = () => {
-                log("前面", this.images)
-                log("后面", img)
                 this.images[name] = img
                 // 所有图片载入成功后，调用 run
                 loads.push(1)

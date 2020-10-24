@@ -1,29 +1,107 @@
+class FourLabel{
+    constructor(game, text){
+        this.game = game
+        this.text = text
+    }
+    draw() {
+        this.game.context.fillText(this.text, 100, 30)
+    }
+    static new(game, text){
+        return new this(game, text)
+    }
+    update(){
+
+    }
+}
+
 class SceneTitle extends FourScene {
     constructor(game) {
         super(game)
-        game.registerAction("k", function () {
-            var s  = Scene(game)
-            game.replaceScene(s)
-            })
-        game.registerAction("b", function () {
-            var s  = SceneEdit.new(game)
-            game.replaceScene(s)
-            })
+        var label = FourLabel.new(game, "hello")
+        this.addElement(label)
 
+        var ps = FourParticleSystem.new(game)
+        this.addElement(ps)
+    }
+
+}
+
+class FourParticleSystem{
+    constructor(game) {
+        this.game = game
+        this.setup()
+    }
+
+    static new(game){
+        return new this(game)
+    }
+
+    setup() {
+        this.duration = 50
+        this.x = 150
+        this.y = 200
+        this.numberOfParticles = 50
+        this.particles = []
+    }
+    
+    update() {
+        // 添加小火花
+        log("update particlesys")
+        this.duration--
+        if (this.duration < 0){
+            // TODO
+            return
+        }
+        if (this.particles.length < this.numberOfParticles) {
+            var p = FourParticle.new(this.game)
+            // 设置初始化坐标
+            var s = 5
+            var vx = 0.1 * randomBetween(-s, s)
+            var vy = 0.1 * randomBetween(-s ,s)
+            p.init(this.x, this.y, vx, vy)
+            this.particles.push(p)
+        }
+
+        // 更新所有小火花
+        for (var p of this.particles) {
+            p.update()
+        }
+
+        // 删掉小火花
+        this.particles = this.particles.filter(p => p.life > 0)
+        
     }
 
     draw() {
-        var gradient = this.game.context.createLinearGradient(0,0,400,0);
-        gradient.addColorStop("0","magenta");
-        gradient.addColorStop("0.5","blue");
-        gradient.addColorStop("1.0","red");
-
-        this.game.context.fillStyle=gradient
-        this.game.context.fillText("开始游戏, press k", 100, 30)
-
+        log("draw particlesys")
+        for (var p of this.particles) {
+            p.draw()
+        }
     }
+}
+
+class FourParticle extends FourImage{
+    constructor(game){
+        super(game, "fire")
+        this.setup()
+    }
+    setup() {
+        this.life = 60
+    }
+
+    init(x, y, vx, vy){
+        this.x = x
+        this.y = y
+        this.vx = vx
+        this.vy = vy
+    }
+
     update() {
-
-    }   
-
+        this.life--
+        this.x += this.vx
+        this.y += this.vy
+        var factor = 0.01
+        this.vx += factor * this.vx
+        this.vy += factor * this.vy
+    }
 }
