@@ -50,12 +50,28 @@ var __main = function () {
         enemy3: "./png/enemy3.png",
         enemy4: "./png/enemy4.png",
         fire: "./png/fire.png",
+        
+        // 多状态动画
+        i1: "./png/idle/i1.png",
+        i2: "./png/idle/i2.png",
+        i3: "./png/idle/i3.png",
+        i4: "./png/idle/i4.png",
+        // 跑动
+        w1: "./png/walking/w1.png",
+        w2: "./png/walking/w2.png",
+        w3: "./png/walking/w3.png",
+        w4: "./png/walking/w4.png",
+        w5: "./png/walking/w5.png",
+        w6: "./png/walking/w6.png",
+
+        cave: "./png/cave.png"
+
     }
     // var scene = Scene(game)
 
     var game = Game.instance(45, images, function(g){
-        var s = Scene.new(g)
-        // var s = SceneTitle.new(g)
+        // var s = Scene.new(g)
+        var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)

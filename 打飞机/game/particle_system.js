@@ -21,7 +21,9 @@ class FourParticleSystem{
         log("update particlesys")
         this.duration--
         if (this.duration < 0){
-            // TODO
+            // TODO 删掉所有的火花, 从 scene的element中删掉这个ps元素
+            // return
+            this.particles = []
             return
         }
         if (this.particles.length < this.numberOfParticles) {

@@ -16,10 +16,10 @@ class Game {
         // 或者可以用 self 避免
         // var self = this
         window.addEventListener("keydown", event => {
-            this.keydonws[event.key] = true
+            this.keydonws[event.key] = "down"
         })
         window.addEventListener("keyup", event => {
-            this.keydonws[event.key] = false
+            this.keydonws[event.key] = "up"
         })
 
         this.init()
@@ -69,8 +69,13 @@ class Game {
         var actions = Object.keys(this.actions)
         for (var i = 0; i < actions.length; i++) {
             var key = actions[i]
-            if (this.keydonws[key]) {
-                this.actions[key]()
+            var status = this.keydonws[key]
+            if (status == "down") {
+                this.actions[key]("down")
+            } else if (status == "up") {
+                this.actions[key]("up")
+                // up之后要删除掉 key 的状态
+                this.keydonws[key] = null
             }
         }
         this.update()
