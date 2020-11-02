@@ -25,11 +25,6 @@ class SceneEdit extends FourScene {
     }
 
     draw() {
-        var gradient = this.game.context.createLinearGradient(0, 0, 400, 0);
-        gradient.addColorStop("0", "magenta")
-        gradient.addColorStop("0.5", "blue")
-        gradient.addColorStop("1.0", "red")
-        this.game.context.fillStyle = gradient
         this.game.context.fillText("关卡编辑", 100, 30)
         for (var i = 0; i < this.blocks.length; i++) {
             var block = this.blocks[i]
