@@ -37,6 +37,11 @@ class FourAnimation {
         // 更新受力
         this.y += this.vy
         this.vy += this.gy * 0.02
+        var h = 500
+        if (this.y > h) {
+            this.y = h
+        }
+
         this.frameCount--
         if (this.frameCount == 0) {
             this.frameCount = 6
