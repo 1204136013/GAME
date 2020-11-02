@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打飞机</title>
+    <!-- 关卡数据 -->
+    <script src="./level.js"></script>
+
+    <!-- 基础游戏数据 -->
+    <script src="./game/game.js"></script>
+    <script src="./game/four_scene.js"></script>
+    <script src="./game/utils.js"></script>
+    <script src="./game/four_image.js"></script>
+    <script src="./game/particle_system.js"></script>
+    <script src="./game/four_lable.js"></script>
+    <script src="./game/four_animation.js"></script>
+
+    <!-- 主场景 -->
+    <script src="./scene/main/block.js"></script>
+    <script src="./scene/main/paddle.js"></script>
+    <script src="./scene/main/ball.js"></script>
+    <script src="./scene/main/scene.js"></script>
+    <script src="./scene/main/enemy.js"></script>
+    <script src="./scene/main/cloud.js"></script>
+    <script src="./scene/main/bullet.js"></script>
+    <script src="./scene/main/player.js"></script>
+
+    <!-- 结束场景 -->
+    <script src="./scene/end/scene_end.js"></script>
+    <script src="./scene/end/scene_success.js"></script>
+
+    <!-- 标题场景 -->
+    <script src="./scene/title/scene_title.js"></script>
+    <script src="./scene/edit/scene_edit.js"></script>
+
+</head>
+
+<body>
+    <canvas id="id-canvas" width="400" height="600"></canvas>
+    <hr>
+    <input type="range" id="id-input-speed" value="1">
+    <hr>
+    <!-- <div>
+        <textarea name="" id="id-text-log" cols="50" rows="20"></textarea>
+    </div> -->
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            id=""
+            value=""
+            data-value="config.player_speed"
+            >
+            player speed : <span class="four-label"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            id=""
+            value=""
+            data-value="config.bullet_speed"
+            >
+            bullet speed : <span class="four-label"></span>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            max="20"
+            id=""
+            value=""
+            data-value="config.fire_cooldown"
+            >
+            bullet cooldown : <span class="four-label"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="range" 
+            class="four-auto-slider"
+            max="20"
+            id=""
+            value=""
+            min="-10"
+            data-value="config.cloud_speed"
+            >
+            cloud speed : <span class="four-label"></span>
+        </label>
+    </div>
+
+    <script src="./main.js"></script>
+    <script>
+        var es = sel => document.querySelectorAll(sel)
+        var binAll = function(sel, eventName, callback){
+            var l = es(sel)
+            for (var i = 0; i<l.length; i++) {
+                var input = l[i]
+                input.addEventListener(eventName, function(event){
+                    callback(event)
+                })
+            }
+        }
+        binAll(".four-auto-slider", "input", function(event){
+            var target = event.target
+            var bindVar = target.dataset.value
+            var v = target.value
+            eval(bindVar + "=" + v)
+            var label = target.closest("label").querySelector(".four-label")
+            label.innerText = v
+        })
+    </script>
+
+</body>
+
+</html>
