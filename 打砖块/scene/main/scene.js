@@ -26,7 +26,7 @@ var Scene = function (game) {
     game.canvas.addEventListener("mousedown", function (event) {
         var x = event.offsetX
         var y = event.offsetY
-        log(x, y, event)
+        log(x, y, "down")
 
         if (ball.hasPoint(x, y)) {
             log("点中球了")
@@ -61,10 +61,6 @@ var Scene = function (game) {
         game.drawImage(paddle)
         game.drawImage(ball)
 
-        if (blocks.length > 1) {
-            log("blocks", blocks)
-        }
-
         for (var i = 0; i < blocks.length; i++) {
             var block = blocks[i]
             if (block.alive) {
@@ -96,6 +92,7 @@ var Scene = function (game) {
             var block = blocks[i]
             if (block.collide(ball)) {
                 block.kill()
+                log("ball revert with block")
                 ball.revert()
                 score = score + 100
             }

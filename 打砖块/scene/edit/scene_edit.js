@@ -5,23 +5,20 @@ class SceneEdit extends FourScene {
             var s = Scene(game)
             game.replaceScene(s)
         })
+        levels[0] = []
         this.blocks = []
         game.canvas.addEventListener("mousedown", (event) => {
             var x = event.offsetX
             var y = event.offsetY
             log("生成 block", x, y)
+            log("2")
             var p = [x, y]
             var b = Block(game, p)
             b.cell(x, y)
             this.blocks.push(b)
-            levels[0].push(p)
+            levels[0].push([b.x, b.y])
+            log("levels" ,levels)
         })
-
-        window.addEventListener("keydown", event => {
-            log(event.key)
-            log(levels)
-        })
-
     }
 
     draw() {
@@ -31,6 +28,7 @@ class SceneEdit extends FourScene {
             this.game.drawImage(block)
         }
     }
+
     update() {
 
     }

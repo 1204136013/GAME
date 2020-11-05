@@ -53,8 +53,8 @@ class Game {
     }
 
     imageByName = (name) => {
-        log(name)
-        log(this.images)
+        // log(name)
+        // log(this.images)
         var img = this.images[name]
         var image = {
             w: img.width,
@@ -84,7 +84,7 @@ class Game {
     runWithScene = (scene) => {
         // call(g)
         this.scene = scene
-        log("runloop", this.runloop)
+        // log("runloop", this.runloop)
         setTimeout(() => {
             this.runloop()
         }, 1000 / window.fps)

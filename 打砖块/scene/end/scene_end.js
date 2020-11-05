@@ -31,8 +31,6 @@ class SceneEnd extends FourScene {
     
     draw() {
         this.game.context.fillText("Game Over, press r to restart", 100, 30)
-
-
     }
     update() {
 
