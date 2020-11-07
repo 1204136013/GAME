@@ -20,7 +20,7 @@ var Block = function (game, postition) {
 
     o.kill = function () {
         o.lifes = o.lifes - 1
-        log("life -1")
+        log("life -1, lifes:", o.lifes)
         if (o.lifes < 1) {
             log("killed")
             o.alive = false

@@ -2,7 +2,7 @@ class Game {
     constructor(fps, images, runCallback) {
         window.fps = fps
         this.images = images,
-            this.runCallback = runCallback
+        this.runCallback = runCallback
 
         this.scene = null
         this.actions = {}
