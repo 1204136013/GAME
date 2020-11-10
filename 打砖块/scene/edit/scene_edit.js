@@ -7,6 +7,7 @@ class SceneEdit extends FourScene {
         })
         // levels[0] = []
         this.blocks = []
+        this.levels = levels
         game.canvas.addEventListener("mousedown", (event) => {
             var x = event.offsetX
             var y = event.offsetY
@@ -35,6 +36,14 @@ class SceneEdit extends FourScene {
             var block = this.blocks[i]
             this.game.drawImage(block)
         }
+        // for (var i = 0; i < this.l[0].length; i++) {
+        //     var b = Block(this.game, this.l[0][i])
+
+        //     // var block = levels[0][i]
+        //     var block = b
+        //     this.game.drawImage(block)
+        // }
+
     }
 
     update() {
