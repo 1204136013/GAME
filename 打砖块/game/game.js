@@ -52,6 +52,10 @@ class Game {
         this.scene = scene
     }
 
+    sceneName = () => {
+        return this.scene.__proto__.constructor.name
+    }
+
     imageByName = (name) => {
         // log(name)
         // log(this.images)

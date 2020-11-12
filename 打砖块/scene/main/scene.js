@@ -3,6 +3,7 @@ class Scene extends FourScene {
         super(game)
         this.level = 1
         this.levels = levels
+        log("scene levels", this.levels)
         this.level_max = this.levels.length
         this.ball = Ball(this.game)
         this.paddle = Paddle(this.game)
@@ -54,10 +55,10 @@ class Scene extends FourScene {
             this.enableDrag = false
         })
 
-        log("scene blocks", this.blocks)
     }
 
     draw() {
+        log("scene blocks", this.blocks)
         this.game.drawImage(this.paddle)
         this.game.drawImage(this.ball)
 
@@ -114,14 +115,18 @@ class Scene extends FourScene {
                 this.blocks = loadLevel(this.game, this.level)
             }
             else {
-                var success = SceneSuccess.new(this.game)
-                this.game.replaceScene(success)
+                var e = SceneEnd.new(this.game)
+                this.game.replaceScene(e)
             }
         }
-
-
     }
-
+    
+    reset() {
+        for (var i = 0; i < this.blocks.length; i++) {
+            var block = this.blocks[i]
+            block.reborn()
+        }
+    }
 }
 
 // 碰撞只反弹了 y, 没有反弹 x, 如果 从侧面装上去, 就会卡进到模型里
