@@ -26,6 +26,7 @@ class FourAnimation {
         this.vy = 0
         this.w = this.texture.width
         this.h = this.texture.height
+        this.rotation = 0
     }
     static new(game) {
         return new this(game)
@@ -33,13 +34,21 @@ class FourAnimation {
     frames() {
         return this.animations[this.AnimationName]
     }
+    jump() {
+        this.vy = -5
+        this.rotation = -45
+    }
     update() {
         // 更新受力
         this.y += this.vy
-        this.vy += this.gy * 0.02
-        var h = 500
+        this.vy += this.gy * 0.04
+        var h = 495
         if (this.y > h) {
             this.y = h
+        }
+        // 更新角度
+        if (this.rotation < 45) {
+            this.rotation += 5
         }
 
         this.frameCount--
@@ -52,18 +61,22 @@ class FourAnimation {
 
     draw() {
         var context = this.game.context
-        if (this.flipx) {
-            context.save()
-            var x = this.x + this.w / 2
-            context.translate(x, 0)
-            context.scale(-1, 1)
-            context.translate(-x, 0)
+        context.save()
 
-            context.drawImage(this.texture, this.x, this.y)
-            context.restore()
-        } else {
-            context.drawImage(this.texture, this.x, this.y)
+        var w2 = this.w / 2
+        var h2 = this.h / 2
+
+        context.translate(this.x + w2, this.y + h2)
+        if (this.flipx) {
+            context.scale(-1, 1)
         }
+        context.rotate(this.rotation * Math.PI / 180)
+
+
+        context.translate(-w2, -h2)
+
+        context.drawImage(this.texture, 0, 0)
+        context.restore()
         // this.game.drawImage(this)
     }
     move(x, keyStatus) {

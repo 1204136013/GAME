@@ -41,14 +41,19 @@ class SceneTitle extends FourScene {
         }
     }
     setupInputs = () => {
-        // this.game.registerAction("a", (keyStatus) => {
-        //     log("eventa", keyStatus)
-        //     this.w.move(-2, keyStatus)
-        // })
-        // this.game.registerAction("d", (keyStatus) => {
-        //     log("eventd", keyStatus)
-        //     this.w.move(2, keyStatus)
-        // })
+        var b = this.bird
+        this.game.registerAction("a", (keyStatus) => {
+            log("eventa", keyStatus)
+            b.move(-2, keyStatus)
+        })
+        this.game.registerAction("d", (keyStatus) => {
+            log("eventd", keyStatus)
+            b.move(2, keyStatus)
+        })
+        this.game.registerAction("j", (keyStatus) => {
+            b.jump()
+        })
+
     }
 }
 
