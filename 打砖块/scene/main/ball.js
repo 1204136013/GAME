@@ -13,7 +13,7 @@ var Ball = function (game) {
     o.x = 0
     o.y = 0
     o.speedX = 5
-    o.speedY = 5
+    o.speedY = 5                                        
     o.fired = false
     o.move = function () {
         if (o.fired) {

@@ -2,7 +2,7 @@ class Game {
     constructor(fps, images, runCallback) {
         window.fps = fps
         this.images = images,
-            this.runCallback = runCallback
+        this.runCallback = runCallback
 
         this.scene = null
         this.actions = {}
@@ -52,9 +52,13 @@ class Game {
         this.scene = scene
     }
 
+    sceneName = () => {
+        return this.scene.__proto__.constructor.name
+    }
+
     imageByName = (name) => {
-        log(name)
-        log(this.images)
+        // log(name)
+        // log(this.images)
         var img = this.images[name]
         var image = {
             w: img.width,
@@ -84,7 +88,7 @@ class Game {
     runWithScene = (scene) => {
         // call(g)
         this.scene = scene
-        log("runloop", this.runloop)
+        // log("runloop", this.runloop)
         setTimeout(() => {
             this.runloop()
         }, 1000 / window.fps)
