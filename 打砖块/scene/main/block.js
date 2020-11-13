@@ -33,6 +33,7 @@ var Block = function (game, postition) {
 
     o.reborn = function() {
         o.lifes = o.hp
+        o.alive = true
     }
     return o
 }

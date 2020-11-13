@@ -45,5 +45,13 @@ var Ball = function (game) {
 
         return xIn && yIn
     }
+
+    o.reset = function () {
+        o.x = 0
+        o.y = 0
+        o.fired = false
+    }
+
     return o
+    
 }
