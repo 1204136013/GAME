@@ -3,18 +3,12 @@ class Game {
         window.fps = fps
         this.images = images,
         this.runCallback = runCallback
-
         this.scene = null
         this.actions = {}
         this.keydonws = {}
         this.canvas = document.querySelector("#id-canvas")
         this.context = this.canvas.getContext("2d")
 
-        //events
-        // 此处有一个陷阱， this是这个类还是这个函数？
-        // 可以用箭头函数避免， 因为箭头函数没有自己的 this
-        // 或者可以用 self 避免
-        // var self = this
         window.addEventListener("keydown", event => {
             this.keydonws[event.key] = true
         })
@@ -23,7 +17,6 @@ class Game {
         })
 
         this.init()
-
     }
 
     static instance(...args) {
@@ -94,11 +87,9 @@ class Game {
         }, 1000 / window.fps)
     }
 
-
     registerAction = (key, callback) => {
         this.actions[key] = callback
     }
-
 
     run = () => {
         this.runCallback(this)

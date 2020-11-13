@@ -50,24 +50,10 @@ var __main = function () {
     })
     enableDebugMode(game, true)
     // var game = Game(45, images, function(g){
-    //     // debug 模式所需
-
-    //     enableDebugMode(game, true)
-
-    //     game.update = function () {
-    //         scene.update()
-    //     }
-    
-    //     game.draw = function () {
-    //         scene.draw()
-    //     }
-
-
-    // })
     // 这里会有一个bug， game里需要载入图像， 而JavaScript载入图像是异步操作
     // 他并不会在这里载入图像， 而是接着执行下面的代码， 然后再载入图像
     // 下面的代码依赖图像，会出现undefined错误
-    // 非常恶心的 临时解决办法， 把所有的事情全丢到回调函数里去做
+    // 临时解决办法， 把所有的事情全丢到回调函数里去做
 
 }
 
