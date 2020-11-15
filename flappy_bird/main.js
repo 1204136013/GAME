@@ -40,33 +40,8 @@ var enableDebugMode = function (game,enable) {
 
 var __main = function () {
     var images = {
-        bullet: "./png/bullet.png",
-        cloud: "./png/cloud.png",
-        player: "./png/player.png",
-        sky: "./png/sky.png",
-        enemy0: "./png/enemy0.png",
-        enemy1: "./png/enemy1.png",
-        enemy2: "./png/enemy2.png",
-        enemy3: "./png/enemy3.png",
-        enemy4: "./png/enemy4.png",
-        fire: "./png/fire.png",
-        
-        // 多状态动画
-        i1: "./png/idle/i1.png",
-        i2: "./png/idle/i2.png",
-        i3: "./png/idle/i3.png",
-        i4: "./png/idle/i4.png",
-        // 跑动
-        w1: "./png/walking/w1.png",
-        w2: "./png/walking/w2.png",
-        w3: "./png/walking/w3.png",
-        w4: "./png/walking/w4.png",
-        w5: "./png/walking/w5.png",
-        w6: "./png/walking/w6.png",
-
-        cave: "./png/cave.png",
-        
         bg: "./bird/bg.png",
+        pipe: "./bird/pipe.png",
         ground: "./bird/xcground.png",
         b1: "./bird/b1.png",
         b2: "./bird/b2.png",

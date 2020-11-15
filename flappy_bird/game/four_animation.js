@@ -20,7 +20,7 @@ class FourAnimation {
         this.texture = this.frames()[0]
         this.frameIndex = 0
         this.frameCount = 6
-        this.flipx = false
+        this.flipX = false
         // TODO 重力这里, 应该animaiton是个基类, 继承自他
         this.gy = 10
         this.vy = 0
@@ -67,7 +67,7 @@ class FourAnimation {
         var h2 = this.h / 2
 
         context.translate(this.x + w2, this.y + h2)
-        if (this.flipx) {
+        if (this.flipX) {
             context.scale(-1, 1)
         }
         context.rotate(this.rotation * Math.PI / 180)
@@ -80,7 +80,7 @@ class FourAnimation {
         // this.game.drawImage(this)
     }
     move(x, keyStatus) {
-        this.flipx = x < 0
+        this.flipX = x < 0
         log("keystatus", keyStatus)
         this.x += x
         var animationNames = {
