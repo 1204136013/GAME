@@ -1,14 +1,4 @@
 var Ball = function (game) {
-    // 初始化挡板
-    // var image = imageFromPath("./png/ball.png")
-    // var o = {
-    //     image: image,
-    //     x: 0,
-    //     y: 0,
-    //     speedX: 5,
-    //     speedY: 5,
-    //     fired: false,
-    // }
     var o = game.imageByName("ball")
     o.x = 0
     o.y = 0
@@ -45,5 +35,13 @@ var Ball = function (game) {
 
         return xIn && yIn
     }
+
+    o.reset = function () {
+        o.x = 0
+        o.y = 0
+        o.fired = false
+    }
+
     return o
+    
 }

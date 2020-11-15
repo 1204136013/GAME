@@ -22,8 +22,9 @@ class SceneTitle extends FourScene {
     }
 
     draw() {
-        this.game.context.fillText("按 k 开始游戏", 100, 30)
+        this.game.context.fillText("按 k 开始游戏, 按 e 进入关卡编辑", 100, 30)
     }
+    
     update() {
 
     }   

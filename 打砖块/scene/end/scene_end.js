@@ -8,8 +8,9 @@ class SceneEnd extends FourScene {
     }
     
     draw() {
-        this.game.context.fillText("游戏结束, 按 r 重开", 100, 30)
+        this.game.context.fillText("游戏结束, 按 r 回到标题页", 100, 30)
     }
+    
     update() {
 
     }
