@@ -37,5 +37,6 @@ class Player extends FourImage {
         b.x = x
         b.y = y
         this.scene.addElement(b)
+        this.scene.bullets.push(b)
     }
 }

@@ -15,6 +15,13 @@ class Scene extends FourScene {
 
     update() {
         super.update()
+        for (var i = 0; i < this.enemies.length; i++){
+            var e = this.enemies[i]
+            if (e.collide(this.bullets)){
+                log("打中了")
+            } else{
+            }
+        }
         // this.cloud.y += 1
     }
 
@@ -25,7 +32,7 @@ class Scene extends FourScene {
         this.player = Player.new(this.game)
         this.player.x = 100
         this.player.y = 150
-
+        this.bullets = []
         // 这里 push 的顺序需要注意, bg必须第一个， 不然会盖住其他图片
         this.addElement(this.bg)
         this.addElement(this.player)

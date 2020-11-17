@@ -6,9 +6,12 @@ class FourImage {
         this.y = 0
         this.w = this.texture.width
         this.h = this.texture.height
+        this.alive = true
     }
     draw() {
-        this.game.drawImage(this)
+        if (this.alive) {
+            this.game.drawImage(this)
+        }
     }
     static new(game, name) {
         var i = new this(game, name)

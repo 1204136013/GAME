@@ -1,22 +1,25 @@
 class Enemy extends FourImage {
     constructor(game, i) {
-        log("i is", i)
         var type = initType(i)
-        log("type is ", type)
         var name = "enemy" + type
         super(game, name)
-        this.setup()
+        this.name = name
+        this.setup(type)
     }
-    setup() {
+    setup(type) {
+        this.type = type
         this.speed = randomBetween(2, 3)
         this.x = randomBetween(0, 350)
         this.y = - randomBetween(50, 200)
         this.limitX()
+        this.alive = true
+        // this.lifes = 2 * (type + 1) // 根据敌人类型设置生命值
+        this.lifes = 1
     }
     update() {
         this.y += this.speed
         if (this.y > 620) {
-            this.setup()
+            this.setup(this.type)
         }
     }
     
@@ -26,4 +29,27 @@ class Enemy extends FourImage {
             this.x = 400 - this.w
         }
     }
+
+    // 这里有一个 bug 如果原本没撞到的子弹, 后来撞到了, 会导致循环提前结束
+    // 后面就算是撞到了的子弹也无法继续进行判断逻辑
+    collide(bs) {
+        for (var i = 0; i < bs.length; i++){
+            var b = bs[i]
+            if (this.alive && b.alive) {
+                if (recIntersects(this, b) || recIntersects(b, this)){
+                    b.kill()
+                    this.kill()
+                } 
+            }
+        }
+    }
+
+    kill() {
+        var o = this
+        o.lifes = o.lifes - 1
+        if (o.lifes < 1) {
+            o.alive = false
+        }
+    }
+
 }

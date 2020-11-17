@@ -18,7 +18,7 @@ class FourParticleSystem{
     
     update() {
         // 添加小火花
-        log("update particlesys")
+        // log("update particlesys")
         this.duration--
         if (this.duration < 0){
             // TODO 删掉所有的火花, 从 scene的element中删掉这个ps元素
@@ -47,7 +47,7 @@ class FourParticleSystem{
     }
 
     draw() {
-        log("draw particlesys")
+        // log("draw particlesys")
         for (var p of this.particles) {
             p.draw()
         }
