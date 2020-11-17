@@ -1,6 +1,8 @@
 class Enemy extends FourImage {
-    constructor(game) {
-        var type = randomBetween(0, 2)
+    constructor(game, i) {
+        log("i is", i)
+        var type = initType(i)
+        log("type is ", type)
         var name = "enemy" + type
         super(game, name)
         this.setup()

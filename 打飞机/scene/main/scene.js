@@ -19,7 +19,7 @@ class Scene extends FourScene {
     }
 
     setup() {
-        this.numberOfEnemies = 5
+        this.numberOfEnemies = 7
         this.bg = FourImage.new(this.game, "sky")
         this.cloud = Cloud.new(this.game, "cloud")
         this.player = Player.new(this.game)
@@ -38,7 +38,7 @@ class Scene extends FourScene {
     addEnemies() {
         var es = []
         for (var i = 0; i < this.numberOfEnemies; i++) {
-            var e = Enemy.new(this.game)
+            var e = Enemy.new(this.game, i)
             es.push(e)
             this.addElement(e)
         }
