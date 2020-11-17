@@ -47,8 +47,6 @@ var __main = function () {
         enemy0: "./png/enemy0.png",
         enemy1: "./png/enemy1.png",
         enemy2: "./png/enemy2.png",
-        enemy3: "./png/enemy3.png",
-        enemy4: "./png/enemy4.png",
         fire: "./png/fire.png",
         
         // 多状态动画
@@ -70,8 +68,8 @@ var __main = function () {
     // var scene = Scene(game)
 
     var game = Game.instance(45, images, function(g){
-        // var s = Scene.new(g)
-        var s = SceneTitle.new(g)
+        var s = Scene.new(g)
+        // var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)
