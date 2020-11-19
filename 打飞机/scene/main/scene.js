@@ -1,12 +1,3 @@
-const config = {
-    player_speed: 10,
-    cloud_speed: 1,
-    enemy_speed: 3,
-    bullet_speed: 6,
-    fire_cooldown: 10,
-    enemy_fire_cooldown: 50,
-}
-
 class Scene extends FourScene {
     constructor(game) {
         super(game)
@@ -33,7 +24,6 @@ class Scene extends FourScene {
             var e = SceneEnd.new(this.game)
             // this.game.replaceScene(e)
         }
-
     }
 
     setup() {
@@ -77,15 +67,9 @@ class Scene extends FourScene {
         g.registerAction("j", function () {
             s.player.fire()
         })
-
-        // game.registerAction("f", function () {
-        //     ball.fire()
-        // })
-
     }
 }
 
-// 敌机发射子弹
 // 多加几片云
 // 分数
 
