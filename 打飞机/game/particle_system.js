@@ -1,17 +1,17 @@
 class FourParticleSystem{
-    constructor(game) {
+    constructor(game, x, y) {
         this.game = game
-        this.setup()
+        this.setup(x, y)
     }
 
-    static new(game){
-        return new this(game)
+    static new(game, x, y){
+        return new this(game, x, y)
     }
 
-    setup() {
-        this.duration = 50
-        this.x = 150
-        this.y = 200
+    setup(x, y) {
+        this.duration = 30
+        this.x = x 
+        this.y = y
         this.numberOfParticles = 50
         this.particles = []
     }
@@ -30,8 +30,8 @@ class FourParticleSystem{
             var p = FourParticle.new(this.game)
             // 设置初始化坐标
             var s = 5
-            var vx = 0.1 * randomBetween(-s, s)
-            var vy = 0.1 * randomBetween(-s ,s)
+            var vx = 0.2 * randomBetween(-s, s)
+            var vy = 0.2 * randomBetween(-s ,s)
             p.init(this.x, this.y, vx, vy)
             this.particles.push(p)
         }

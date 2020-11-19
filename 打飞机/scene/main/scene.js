@@ -18,11 +18,18 @@ class Scene extends FourScene {
         for (var i = 0; i < this.enemies.length; i++){
             var e = this.enemies[i]
             if (e.collide(this.bullets)){
-                log("打中了")
-            } else{
+                log("击坠敌机")
+                e.explode()
             }
         }
-        // this.cloud.y += 1
+        var p = this.player
+        if (p.collide(this.enemies)){
+            log("玩家坠毁")
+            p.explode()
+        }
+
+
+
     }
 
     setup() {
@@ -38,8 +45,6 @@ class Scene extends FourScene {
         this.addElement(this.player)
         this.addElement(this.cloud)
         this.addEnemies()
-        var ps = FourParticleSystem.new(this.game)
-        this.addElement(ps)
     }
 
     addEnemies() {
@@ -77,3 +82,8 @@ class Scene extends FourScene {
 
     }
 }
+
+// todo 敌机与玩家的碰撞
+// 敌机发射子弹
+// 多加几多云
+
