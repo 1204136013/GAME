@@ -41,6 +41,7 @@ var enableDebugMode = function (game,enable) {
 var __main = function () {
     var images = {
         bullet: "./png/bullet.png",
+        bullete: "./png/bullete.png", // 敌人子弹
         cloud: "./png/cloud.png",
         player: "./png/player.png",
         sky: "./png/sky.png",

@@ -15,7 +15,6 @@ class SceneEdit extends FourScene {
             this.block.x = x
             this.block.y = y
         })
-        
     }
 
     draw() {

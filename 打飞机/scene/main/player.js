@@ -14,6 +14,8 @@ class Player extends FourImage {
         this.cooldown = 0
         this.alive = true
         this.lifes = 1
+        this.x = 100
+        this.y = 400
     }
     moveLeft() {
         this.x -= this.speed
@@ -48,10 +50,11 @@ class Player extends FourImage {
         this.cooldown = config.fire_cooldown
         var x = this.x + this.w/2
         var y = this.y
-        var b = Bullet.new(this.game)
-        b.x = x
-        b.y = y
+        var b = Bullet.new(this.game, "bullet")
+        b.x = x - b.w / 2
+        b.y = y - b.h
         this.scene.addElement(b)
+        log("b", b)
         this.scene.bullets.push(b)
     }
 

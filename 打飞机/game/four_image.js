@@ -7,6 +7,7 @@ class FourImage {
         this.w = this.texture.width
         this.h = this.texture.height
         this.alive = true
+        this.name = name
     }
     draw() {
         if (this.alive) {
