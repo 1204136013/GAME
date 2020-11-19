@@ -5,7 +5,7 @@ class Cloud extends FourImage {
     }
     setup() {
         this.x = randomBetween(0, 350)
-        this.y = -randomBetween(0, 200)
+        this.y = -randomBetween(0, 500)
     }
     update() {
         this.y += this.speed

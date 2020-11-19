@@ -9,7 +9,7 @@ class Enemy extends FourImage {
     setup(type) {
         this.type = type
         this.cooldown = 0
-        this.speed = randomBetween(2, 3)
+        this.speed = randomBetween(1, 3)
         this.x = randomBetween(0, 350)
         this.y = - randomBetween(50, 200)
         this.limitX()

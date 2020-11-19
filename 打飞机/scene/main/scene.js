@@ -22,21 +22,22 @@ class Scene extends FourScene {
             log("玩家坠毁")
             p.explode()
             var e = SceneEnd.new(this.game)
-            // this.game.replaceScene(e)
+            this.game.replaceScene(e)
         }
     }
 
     setup() {
+        this.elements = []
         this.numberOfEnemies = 7
+        this.numberOfClouds = 10
         this.bg = FourImage.new(this.game, "sky")
-        this.cloud = Cloud.new(this.game, "cloud")
         this.player = Player.new(this.game)
         this.bullets = []
         // 这里 push 的顺序需要注意, bg必须第一个， 不然会盖住其他图片
         this.addElement(this.bg)
         this.addElement(this.player)
-        this.addElement(this.cloud)
         this.addEnemies()
+        this.addClouds()
     }
 
     addEnemies() {
@@ -48,6 +49,14 @@ class Scene extends FourScene {
         }
         this.enemies = es
     }
+
+    addClouds() {
+        for (var i = 0; i < this.numberOfClouds; i++) {
+            var e = Cloud.new(this.game, "cloud")
+            this.addElement(e)
+        }
+    }
+
 
     setupInputs() {
         var g = this.game
