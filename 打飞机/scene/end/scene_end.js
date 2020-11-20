@@ -2,6 +2,10 @@ class SceneEnd extends FourScene {
     constructor(game) {
         super(game)
         game.registerAction("r", function () {
+            var gs = game.sceneName()
+            if (gs != "SceneEnd"){
+                return
+            }    
             var s = Scene.new(game)
             s.setup()
             game.replaceScene(s)

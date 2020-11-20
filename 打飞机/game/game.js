@@ -58,6 +58,11 @@ class Game {
         // }
         return img
     }
+    
+    sceneName = () => {
+        return this.scene.__proto__.constructor.name
+    }
+
 
     runloop = () => {
         var actions = Object.keys(this.actions)

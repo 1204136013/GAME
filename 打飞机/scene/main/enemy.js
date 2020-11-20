@@ -72,7 +72,7 @@ class Enemy extends FourImage {
         if (this.cooldown != 0 || ! this.alive) {
             return
         }
-        this.cooldown = config.enemy_fire_cooldown + this.speed * 10 // 敌机子弹冷却时间加上自己的随机值, 这样不会只能所有敌机同时开火
+        this.cooldown = config.enemy_fire_cooldown + Math.floor(this.x / 10) + this.speed * 5 // 敌机子弹冷却时间加上自己的随机值, 这样不会只能所有敌机同时开火
         var x = this.x + this.w/2
         var y = this.y + this.h
         var b = Bullet.new(this.game, "bullete")

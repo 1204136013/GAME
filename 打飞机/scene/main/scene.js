@@ -22,7 +22,9 @@ class Scene extends FourScene {
             log("玩家坠毁")
             p.explode()
             var e = SceneEnd.new(this.game)
-            this.game.replaceScene(e)
+            setTimeout(() => {
+                this.game.replaceScene(e)
+            }, 1500)
         }
     }
 
@@ -35,9 +37,9 @@ class Scene extends FourScene {
         this.bullets = []
         // 这里 push 的顺序需要注意, bg必须第一个， 不然会盖住其他图片
         this.addElement(this.bg)
-        this.addElement(this.player)
-        this.addEnemies()
         this.addClouds()
+        this.addEnemies()
+        this.addElement(this.player)
     }
 
     addEnemies() {
@@ -79,6 +81,5 @@ class Scene extends FourScene {
     }
 }
 
-// 多加几片云
 // 分数
 

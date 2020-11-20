@@ -44,7 +44,7 @@ class Player extends FourImage {
     }
 
     fire() {
-        if (this.cooldown != 0) {
+        if (this.cooldown != 0 || !this.alive) {
             return
         }
         this.cooldown = config.fire_cooldown
