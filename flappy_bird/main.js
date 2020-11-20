@@ -32,7 +32,7 @@ var enableDebugMode = function (game,enable) {
         var input = event.target
         log("fps", input.value)
         // input.value 最低是 0 所以 + 1
-        // 加一后范围是 1 到 100 
+        // +1 后范围是 1 到 100 
         window.fps = Number(input.value) + 1
     })
 }
