@@ -46,35 +46,27 @@ var __main = function () {
         b1: "./bird/b1.png",
         b2: "./bird/b2.png",
         b3: "./bird/b3.png",
+        over: "./bird/game_over.png",
+        title: "./bird/title.png",
+        n0: "./bird/number/0.png",
+        n1: "./bird/number/1.png",
+        n2: "./bird/number/2.png",
+        n3: "./bird/number/3.png",
+        n4: "./bird/number/4.png",
+        n5: "./bird/number/5.png",
+        n6: "./bird/number/6.png",
+        n7: "./bird/number/7.png",
+        n8: "./bird/number/8.png",
+        n9: "./bird/number/9.png",
     }
     // var scene = Scene(game)
 
     var game = Game.instance(45, images, function(g){
-        // var s = Scene.new(g)
-        var s = SceneTitle.new(g)
+        var s = Scene.new(g)
+        // var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)
-    // var game = Game(45, images, function(g){
-    //     // debug 模式所需
-
-    //     enableDebugMode(game, true)
-
-    //     game.update = function () {
-    //         scene.update()
-    //     }
-    
-    //     game.draw = function () {
-    //         scene.draw()
-    //     }
-
-
-    // })
-    // 这里会有一个bug， game里需要载入图像， 而JavaScript载入图像是异步操作
-    // 他并不会在这里载入图像， 而是接着执行下面的代码， 然后再载入图像
-    // 下面的代码依赖图像，会出现undefined错误
-    // 非常恶心的 临时解决办法， 把所有的事情全丢到回调函数里去做
-
 }
 
 __main()
