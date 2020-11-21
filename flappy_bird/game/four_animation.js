@@ -61,7 +61,14 @@ class FourAnimation {
         if (this.rotation < 45) {
             this.rotation += 5
         }
+        this.changeFrame()
 
+    }
+
+    changeFrame(){
+        if (!this.alive){
+            return
+        }
         this.frameCount--
         if (this.frameCount == 0) {
             this.frameCount = 6
@@ -113,6 +120,9 @@ class FourAnimation {
                 }
             } 
             
+        }
+        if (this.y >= 495){
+            killed = true
         }
         return killed
     }
