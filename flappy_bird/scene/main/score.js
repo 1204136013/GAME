@@ -9,9 +9,11 @@ class Score {
     }
 
     update() {
+
     }
 
     draw() {
+        
     }
 
     // 将数字的各个数位分离
