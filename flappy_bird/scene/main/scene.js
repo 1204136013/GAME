@@ -41,6 +41,18 @@ class Scene extends FourScene {
             var g = this.grounds[i]
             g.x += this.offset
         }
+
+        var p = this.bird
+        var g = this.pipe
+        if (p.collide(this.pipe)){
+            log("玩家坠毁")
+            p.fall()
+            g.stop()
+            var e = SceneEnd.new(this.game)
+            // setTimeout(() => {
+            //     this.game.replaceScene(e)
+            // }, 1500)
+        }
     }
     setupInputs = () => {
         var b = this.bird

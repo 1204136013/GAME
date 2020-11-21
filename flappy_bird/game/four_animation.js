@@ -27,6 +27,8 @@ class FourAnimation {
         this.w = this.texture.width
         this.h = this.texture.height
         this.rotation = 0
+        this.alive = true
+        this.lifes = 1
     }
     static new(game) {
         return new this(game)
@@ -35,9 +37,18 @@ class FourAnimation {
         return this.animations[this.AnimationName]
     }
     jump() {
-        this.vy = -5
-        this.rotation = -45
+        if (this.alive){
+            this.vy = -5
+            this.rotation = -45
+        }
     }
+    fall(){
+        this.vx = 0
+        if (this.vy < 0){
+            this.vy = 0
+        }
+    }
+
     update() {
         // 更新受力
         this.y += this.vy
@@ -74,6 +85,7 @@ class FourAnimation {
         context.restore()
         // this.game.drawImage(this)
     }
+    
     move(x, keyStatus) {
         this.flipX = x < 0
         log("keystatus", keyStatus)
@@ -85,8 +97,33 @@ class FourAnimation {
         var name = animationNames[keyStatus]
         this.changeAnimation(name)
     }
+
     changeAnimation(name) {
         // log("change animation", name)
         this.AnimationName = name
+    }
+
+    collide(p) {
+        es = p.pipes
+        var killed = false
+        for (var i = 0; i < es.length; i++){
+            var b = es[i]
+            if (recIntersects(this, b) || recIntersects(b, this)){
+                if (this.kill()){
+                    killed = true
+                }
+            } 
+            
+        }
+        return killed
+    }
+
+    kill() {
+        var o = this
+        o.lifes = o.lifes - 1
+        if (o.lifes < 1) {
+            o.alive = false
+            return true
+        }
     }
 }
