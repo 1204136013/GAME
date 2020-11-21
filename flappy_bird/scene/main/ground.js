@@ -6,12 +6,10 @@ class Grounds {
             var g = FourImage.new(game, "ground")
             g.x = i * 19
             g.y = 530
-            this.addElement(g)
             this.grounds.push(g)
         }
-        this.skipCount--
-        this.offset = -5
-
+        this.skipCount = 5
+        this.move = true
     }
 
     static new(game) {
@@ -19,17 +17,25 @@ class Grounds {
     }
 
     update() {
-        if (this.move){
-            for (var p of this.pipes) {
-                p.x -= 5
-                if (p.x < -100) {
-                    p.x += this.管子横向间距 * this.columsOfPipe
-                }
-            }
+        if (!this.move){
+            return
+        }
+        this.skipCount--
+        this.offset = -5
+        if (this.skipCount == 0) {
+            this.skipCount = 4
+            this.offset = 15
+        }
+        for (var i = 0; i < 30; i++) {
+            var g = this.grounds[i]
+            g.x += this.offset
         }
     }
 
     draw() {
+        for (var x of this.grounds){
+            x.draw()
+        }
     }
 
     // 地面停止移动

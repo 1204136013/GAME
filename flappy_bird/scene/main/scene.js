@@ -1,58 +1,46 @@
 class Scene extends FourScene {
     constructor(game) {
         super(game)
-
         //bg
         var bg = FourImage.new(game, "bg")
         this.addElement(bg)
         // 加入管子
         this.pipe = Pipes.new(game)
         this.addElement(this.pipe)
-        // TODO: 地面抽象成一个类
-        //地面, 循环移动
-        this.grounds = []
-        for (var i = 0; i < 30; i++) {
-            var g = FourImage.new(game, "ground")
-            g.x = i * 19
-            g.y = 530
-            this.addElement(g)
-            this.grounds.push(g)
-        }
-        this.skipCount = 5
-        //player
+        //bird
         var b = FourAnimation.new(game)
         b.x = 150
         b.y = 190
         this.bird = b
         this.addElement(this.bird)
+        // 加入地面
+        var g = Grounds.new(game)
+        this.ground = g
+        this.addElement(this.ground)
         this.setupInputs()
-
     }
+
     update() {
         super.update()
-        // 地面移动
-        this.skipCount--
-        this.offset = -5
-        if (this.skipCount == 0) {
-            this.skipCount = 4
-            this.offset = 15
-        }
-        for (var i = 0; i < 30; i++) {
-            var g = this.grounds[i]
-            g.x += this.offset
-        }
-
-        var p = this.bird
-        var g = this.pipe
-        if (p.collide(this.pipe)){
+        var b = this.bird
+        var p = this.pipe
+        if (b.collide(p)){
             log("玩家坠毁")
-            p.fall()
-            g.stop()
+            this.stop()
             var e = SceneEnd.new(this.game)
             // setTimeout(() => {
             //     this.game.replaceScene(e)
             // }, 1500)
         }
+    }
+
+    stop(){
+        var b = this.bird
+        var p = this.pipe
+        var g = this.ground
+        b.fall()
+        p.stop()
+        g.stop()
     }
     setupInputs = () => {
         var b = this.bird

@@ -43,7 +43,7 @@ class FourAnimation {
         }
     }
     fall(){
-        this.vx = 0
+        this.alive = false
         if (this.vy < 0){
             this.vy = 0
         }
@@ -99,7 +99,6 @@ class FourAnimation {
     }
 
     changeAnimation(name) {
-        // log("change animation", name)
         this.AnimationName = name
     }
 
