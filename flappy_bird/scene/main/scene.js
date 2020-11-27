@@ -21,6 +21,7 @@ class Scene extends FourScene {
     }
 
     update() {
+        log(this.pipe.pipes)
         super.update()
         var b = this.bird
         var p = this.pipe
