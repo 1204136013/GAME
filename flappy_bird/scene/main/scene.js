@@ -18,13 +18,21 @@ class Scene extends FourScene {
         this.ground = g
         this.addElement(this.ground)
         this.setupInputs()
+
+        //加入分数
+        var s = Score.new(game)
+        this.score = s
     }
 
     update() {
-        log(this.pipe.pipes)
+        // log(this.pipe.pipes)
         super.update()
         var b = this.bird
         var p = this.pipe
+        if (this.pipe.pass(b)){
+            this.score.add()
+            log("超过", this.score.score)
+        }
         if (b.collide(p)){
             log("玩家坠毁")
             this.stop()

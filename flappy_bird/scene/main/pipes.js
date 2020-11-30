@@ -2,7 +2,7 @@ class Pipes {
     constructor(game) {
         this.game = game
         this.pipes = []
-        this.pipeSpace = 150
+        this.pipeSpace = 200
         this.管子横向间距 = 200
         this.columsOfPipe = 3
         this.move = true
@@ -28,6 +28,7 @@ class Pipes {
                 p.x -= 5
                 if (p.x < -100) {
                     p.x += this.管子横向间距 * this.columsOfPipe
+                    p.passed = false
                 }
             }
         }
@@ -58,5 +59,14 @@ class Pipes {
     // 管子停止移动
     stop() {
         this.move  = false
+    }
+
+    pass(b){
+        for ( var p of this.pipes) {
+            if (b.x > p.x && !p.passed && p.flipY){
+                p.passed = true
+                return true
+            }
+        }
     }
 }

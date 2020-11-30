@@ -26,4 +26,8 @@ class Score {
         return r
     }
 
+    add(){
+        this.score ++
+    }
+
 }
