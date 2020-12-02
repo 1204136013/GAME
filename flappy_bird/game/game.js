@@ -25,6 +25,10 @@ class Game {
         this.init()
 
     }
+    
+    sceneName = () => {
+        return this.scene.__proto__.constructor.name
+    }
 
     static instance(...args) {
         this.i = this.i || new this(...args)

@@ -2,7 +2,7 @@ class Pipes {
     constructor(game) {
         this.game = game
         this.pipes = []
-        this.pipeSpace = 200
+        this.pipeSpace = 150
         this.管子横向间距 = 200
         this.columsOfPipe = 3
         this.move = true
