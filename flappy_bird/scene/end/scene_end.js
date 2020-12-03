@@ -6,8 +6,8 @@ class SceneEnd extends FourScene {
             if (gs != "SceneEnd"){
                 return
             }    
-            var s = Scene.new(game)
-            s.setup()
+            var s = SceneTitle.new(game)
+            log("end 2 title")
             game.replaceScene(s)
         })
     }

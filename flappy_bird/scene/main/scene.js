@@ -5,6 +5,7 @@ class Scene extends FourScene {
     }
 
     setup() {
+        this.elements = []
         var game = this.game
         //bg
         var bg = FourImage.new(game, "bg")
@@ -34,7 +35,6 @@ class Scene extends FourScene {
         super.update()
         var b = this.bird
         var p = this.pipe
-        log(this.score.sl)
         if (this.pipe.pass(b)){
             this.score.add()
             log("超过", this.score.score)
@@ -44,6 +44,7 @@ class Scene extends FourScene {
             this.stop()
             var e = SceneEnd.new(this.game)
             setTimeout(() => {
+                log("main 2 end")
                 this.game.replaceScene(e)
             }, 1500)
         }
@@ -73,6 +74,4 @@ class Scene extends FourScene {
         })
 
     }
-
 }
-

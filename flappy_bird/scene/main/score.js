@@ -19,7 +19,6 @@ class Score {
     draw() {
         var context = this.game.context
         var ns = this.parseNumber(this.score)
-        log("ns", ns)
         var x = 190
         for (var i = 0; i < ns.length; i++) {
             var n = ns[i]

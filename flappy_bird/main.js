@@ -62,11 +62,12 @@ var __main = function () {
     // var scene = Scene(game)
 
     var game = Game.instance(45, images, function(g){
-        var s = Scene.new(g)
-        // var s = SceneTitle.new(g)
+        // var s = Scene.new(g)
+        var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)
 }
 
 __main()
+
