@@ -52,9 +52,7 @@ class SceneEdit extends FourScene {
         if (this.l == 1){
             log("log bug", this.blocks)
         }
-
         this.game.context.fillText("关卡编辑, 按 n 编辑下一关, 按 t 编辑结束回到标题", 100, 30)
-        
         for (var i = 0; i < this.blocks[this.l].length; i++) {
             var block = this.blocks[this.l][i]
             this.game.drawImage(block)
@@ -67,6 +65,7 @@ class SceneEdit extends FourScene {
     }
 
     clear() {
+        this.l = 0
         this.levels = [[]]
         this.blocks = [[]]
     }

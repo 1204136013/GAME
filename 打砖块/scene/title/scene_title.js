@@ -16,13 +16,14 @@ class SceneTitle extends FourScene {
                 return
             }
             var s  = SceneEdit.new(game)
+            s.clear()
             game.replaceScene(s)
             })
 
     }
 
     draw() {
-        this.game.context.fillText("按 k 开始游戏, 按 e 进入关卡编辑", 100, 30)
+        this.game.context.fillText("按 k 开始游戏后按 f 发射球, 按 e 进入关卡编辑", 100, 30)
     }
     
     update() {
