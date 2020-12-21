@@ -23,6 +23,9 @@ class SceneTitle extends FourScene {
         var g = Grounds.new(game)
         this.ground = g
         this.addElement(this.ground)
+
+        var t = Title.new(game)
+        this.addElement(t)
         this.setupInputs()
     }
 
@@ -31,7 +34,7 @@ class SceneTitle extends FourScene {
     
     draw() {
         super.draw()
-        this.game.context.fillText("标题界面, 按 k 开始 后 按 j 跳跃", 130, 100)
+        this.game.context.fillText("这里是标题界面, 按 k 开始 后 按 j 跳跃", 130, 100)
     }
 
     stop(){

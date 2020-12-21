@@ -47,7 +47,7 @@ var __main = function () {
         b2: "./bird/b2.png",
         b3: "./bird/b3.png",
         over: "./bird/game_over.png",
-        title: "./bird/title.png",
+        icon: "./bird/icon.png",
         n0: "./bird/number/0.png",
         n1: "./bird/number/1.png",
         n2: "./bird/number/2.png",
