@@ -17,6 +17,7 @@ class Scene extends FourScene {
         }
         // 判断玩家是否碰到敌人或者被击中
         var p = this.player
+        var bs = this.bullets.filter(b => !b.reverse)
         var eb = this.bullets.filter(b => b.reverse)
         if (p.collide(this.enemies.concat(eb))){
             log("玩家坠毁")
@@ -25,6 +26,11 @@ class Scene extends FourScene {
             setTimeout(() => {
                 this.game.replaceScene(e)
             }, 1500)
+        }
+        for (var i = 0; i < bs.length; i++){
+            var b = bs[i]
+            b.collide(eb)
+            log("子弹碰撞")
         }
     }
 
