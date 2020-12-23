@@ -30,7 +30,6 @@ class Scene extends FourScene {
         for (var i = 0; i < bs.length; i++){
             var b = bs[i]
             b.collide(eb)
-            log("子弹碰撞")
         }
     }
 
