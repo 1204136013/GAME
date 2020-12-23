@@ -44,7 +44,6 @@ class Scene extends FourScene {
             this.stop()
             var e = SceneEnd.new(this.game)
             setTimeout(() => {
-                log("main 2 end")
                 this.game.replaceScene(e)
             }, 1500)
         }

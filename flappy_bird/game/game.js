@@ -58,7 +58,6 @@ class Game {
     }
 
     textureByName = (name) => {
-        log(name)
         var img = this.images[name]
         // var image = {
         //     w: img.width,
