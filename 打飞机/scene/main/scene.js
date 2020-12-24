@@ -64,7 +64,6 @@ class Scene extends FourScene {
         }
     }
 
-
     setupInputs() {
         var g = this.game
         var s = this
