@@ -3,7 +3,7 @@ var Ball = function (game) {
     o.x = 0
     o.y = 0
     o.speedX = 5
-    o.speedY = 5                                        
+    o.speedY = 5
     o.fired = false
     o.move = function () {
         if (o.fired) {
@@ -18,14 +18,17 @@ var Ball = function (game) {
             o.y += o.speedY
         }
     }
+
     o.fire = function () {
         o.fired = true
     }
+
     o.revert = function () {
         log("反弹")
         o.speedY = -o.speedY
     }
-    o.hasPoint = function(x, y) {
+
+    o.hasPoint = function (x, y) {
         // 有一个点在ball这个矩形里面
         log("mouseX", x)
         log("mouseY", y)
@@ -41,7 +44,5 @@ var Ball = function (game) {
         o.y = 0
         o.fired = false
     }
-
     return o
-    
 }

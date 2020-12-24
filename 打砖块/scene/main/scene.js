@@ -18,7 +18,6 @@ class Scene extends FourScene {
         this.game.registerAction("f", () => {
             this.ball.fire()
         })
-
         // mouse event
         this.enableDrag = false
         this.game.canvas.addEventListener("mousedown", (event) => {
@@ -53,7 +52,6 @@ class Scene extends FourScene {
             // 取消拖拽状态
             this.enableDrag = false
         })
-
     }
 
     draw() {
@@ -67,7 +65,6 @@ class Scene extends FourScene {
             }
         }
         this.game.context.fillText("Score: " + this.score, 350, 30)
-
     }
 
     update() {
@@ -105,6 +102,7 @@ class Scene extends FourScene {
                 dead = dead + 1
             }
         }
+
         if (dead >= this.blocks.length) {
             if (this.level < this.level_max) {
                 log("所有砖块消灭了")
@@ -118,7 +116,7 @@ class Scene extends FourScene {
             }
         }
     }
-    
+
     reset() {
         for (var i = 0; i < this.blocks.length; i++) {
             var block = this.blocks[i]
@@ -129,5 +127,3 @@ class Scene extends FourScene {
         this.blocks = loadLevel(this.game, this.level)
     }
 }
-
-// 碰撞只反弹了 y, 没有反弹 x, 如果 从侧面装上去, 就会卡进到模型里

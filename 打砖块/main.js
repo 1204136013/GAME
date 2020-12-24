@@ -1,4 +1,3 @@
-
 var loadLevel = function (game, n) {
     blocks = []
     n = n - 1
@@ -43,18 +42,11 @@ var __main = function () {
         paddle: "./png/paddle.png",
     }
     // var scene = Scene(game)
-
     var game = Game.instance(45, images, function(g){
         var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)
-    // var game = Game(45, images, function(g){
-    // 这里会有一个bug， game里需要载入图像， 而JavaScript载入图像是异步操作
-    // 他并不会在这里载入图像， 而是接着执行下面的代码， 然后再载入图像
-    // 下面的代码依赖图像，会出现undefined错误
-    // 临时解决办法， 把所有的事情全丢到回调函数里去做
-
 }
 
 __main()

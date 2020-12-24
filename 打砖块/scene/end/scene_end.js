@@ -6,11 +6,11 @@ class SceneEnd extends FourScene {
             game.replaceScene(s)
         })
     }
-    
+
     draw() {
         this.game.context.fillText("游戏结束, 按 r 回到标题页", 100, 30)
     }
-    
+
     update() {
 
     }

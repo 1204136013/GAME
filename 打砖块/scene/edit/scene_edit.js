@@ -7,7 +7,7 @@ class SceneEdit extends FourScene {
 
         game.registerAction("t", () => {
             var gs = game.sceneName()
-            if (gs != "SceneEdit"){
+            if (gs != "SceneEdit") {
                 return
             }
             log("edit levels", levels)
@@ -17,9 +17,9 @@ class SceneEdit extends FourScene {
             game.replaceScene(s)
         })
 
-        game.registerAction("n",  () => {
+        game.registerAction("n", () => {
             var gs = game.sceneName()
-            if (gs != "SceneEdit"){
+            if (gs != "SceneEdit") {
                 return
             }
             this.l += 1
@@ -49,7 +49,7 @@ class SceneEdit extends FourScene {
     }
 
     draw() {
-        if (this.l == 1){
+        if (this.l == 1) {
             log("log bug", this.blocks)
         }
         this.game.context.fillText("关卡编辑, 按 n 编辑下一关, 按 t 编辑结束回到标题", 100, 30)

@@ -27,13 +27,14 @@ var Block = function (game, postition) {
 
     o.cell = function (x, y) {
         // 将画布按照 block 的大小拆分成一个个的格子, 确保每个 block 只能被画在格子里
-        o.x = Math.floor(x/o.w) * o.w
-        o.y = Math.floor(y/o.h) * o.h
+        o.x = Math.floor(x / o.w) * o.w
+        o.y = Math.floor(y / o.h) * o.h
     }
 
-    o.reborn = function() {
+    o.reborn = function () {
         o.lifes = o.hp
         o.alive = true
     }
+    
     return o
 }
