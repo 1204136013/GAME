@@ -8,9 +8,9 @@ class Scene extends FourScene {
     update() {
         super.update()
         // 判断敌机是否被玩家击中
-        for (var i = 0; i < this.enemies.length; i++){
+        for (var i = 0; i < this.enemies.length; i++) {
             var e = this.enemies[i]
-            if (e.collide(this.bullets)){
+            if (e.collide(this.bullets)) {
                 log("击坠敌机")
                 e.explode()
             }
@@ -19,7 +19,7 @@ class Scene extends FourScene {
         var p = this.player
         var bs = this.bullets.filter(b => !b.reverse)
         var eb = this.bullets.filter(b => b.reverse)
-        if (p.collide(this.enemies.concat(eb))){
+        if (p.collide(this.enemies.concat(eb))) {
             log("玩家坠毁")
             p.explode()
             var e = SceneEnd.new(this.game)
@@ -27,7 +27,7 @@ class Scene extends FourScene {
                 this.game.replaceScene(e)
             }, 1500)
         }
-        for (var i = 0; i < bs.length; i++){
+        for (var i = 0; i < bs.length; i++) {
             var b = bs[i]
             b.collide(eb)
         }
@@ -85,6 +85,3 @@ class Scene extends FourScene {
         })
     }
 }
-
-// 分数
-
