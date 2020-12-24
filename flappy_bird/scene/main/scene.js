@@ -28,7 +28,8 @@ class Scene extends FourScene {
         //加入分数
         var s = Score.new(game)
         this.score = s
-        this.addElement(s)        
+        this.addElement(s)
+        this.end = false        
     }
 
     update() {
@@ -40,12 +41,19 @@ class Scene extends FourScene {
             log("超过", this.score.score)
         }
         if (b.collide(p)){
+            if (this.end){
+                return
+            }
             log("玩家坠毁")
             this.stop()
             var e = SceneEnd.new(this.game)
             setTimeout(() => {
+                log("timeout replace scene")
                 this.game.replaceScene(e)
             }, 1500)
+            
+            // 防止注册太多个定时事件, 导致场景切换异常
+            this.end = true
         }
     }
 
@@ -60,6 +68,7 @@ class Scene extends FourScene {
 
     setupInputs = () => {
         var b = this.bird
+        
         this.game.registerAction("a", (keyStatus) => {
             log("eventa", keyStatus)
             b.move(-2, keyStatus)
