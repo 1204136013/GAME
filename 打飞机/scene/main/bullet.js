@@ -30,16 +30,15 @@ class Bullet extends FourImage {
 
     collide(bs) {
         var killed = false
-        for (var i = 0; i < bs.length; i++){
+        for (var i = 0; i < bs.length; i++) {
             var b = bs[i]
             if (this.alive && b.alive) {
-                if (recIntersects(this, b) || recIntersects(b, this)){
+                if (recIntersects(this, b) || recIntersects(b, this)) {
                     b.kill()
                     this.kill()
-                } 
+                }
             }
         }
         return killed
     }
-
 }

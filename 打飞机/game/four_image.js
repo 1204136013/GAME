@@ -9,11 +9,13 @@ class FourImage {
         this.alive = true
         this.name = name
     }
+
     draw() {
         if (this.alive) {
             this.game.drawImage(this)
         }
     }
+    
     static new(game, name) {
         var i = new this(game, name)
         return i
@@ -21,12 +23,5 @@ class FourImage {
 
     update() {
 
-    }   
+    }
 }
-
-// 逻辑上， 不应该继承 GuaImage
-// class Player extends FourImage{
-//     constructor(game, name) {
-        
-//     }
-// }

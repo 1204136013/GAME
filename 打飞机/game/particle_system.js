@@ -1,28 +1,25 @@
-class FourParticleSystem{
+class FourParticleSystem {
     constructor(game, x, y) {
         this.game = game
         this.setup(x, y)
     }
 
-    static new(game, x, y){
+    static new(game, x, y) {
         return new this(game, x, y)
     }
 
     setup(x, y) {
         this.duration = 30
-        this.x = x 
+        this.x = x
         this.y = y
         this.numberOfParticles = 50
         this.particles = []
     }
-    
+
     update() {
         // 添加小火花
-        // log("update particlesys")
         this.duration--
-        if (this.duration < 0){
-            // TODO 删掉所有的火花, 从 scene的element中删掉这个ps元素
-            // return
+        if (this.duration < 0) {
             this.particles = []
             return
         }
@@ -31,19 +28,16 @@ class FourParticleSystem{
             // 设置初始化坐标
             var s = 5
             var vx = 0.2 * randomBetween(-s, s)
-            var vy = 0.2 * randomBetween(-s ,s)
+            var vy = 0.2 * randomBetween(-s, s)
             p.init(this.x, this.y, vx, vy)
             this.particles.push(p)
         }
-
         // 更新所有小火花
         for (var p of this.particles) {
             p.update()
         }
-
         // 删掉小火花
         this.particles = this.particles.filter(p => p.life > 0)
-        
     }
 
     draw() {
@@ -54,16 +48,17 @@ class FourParticleSystem{
     }
 }
 
-class FourParticle extends FourImage{
-    constructor(game){
+class FourParticle extends FourImage {
+    constructor(game) {
         super(game, "fire")
         this.setup()
     }
+    
     setup() {
         this.life = 60
     }
 
-    init(x, y, vx, vy){
+    init(x, y, vx, vy) {
         this.x = x
         this.y = y
         this.vx = vx

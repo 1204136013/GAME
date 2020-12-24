@@ -22,7 +22,6 @@ const randomBetween = function (start, end) {
     return Math.floor(n + start)
 }
 
-// 随机生成敌人容易产生多个同种敌机
 // 指定生成四个小飞机, 两个中飞机, 一个大飞机
 const initType = function (i) {
     if ([0, 1, 2, 3].includes(i)) {

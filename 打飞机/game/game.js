@@ -3,7 +3,6 @@ class Game {
         window.fps = fps
         this.images = images
         this.runCallback = runCallback
-
         this.scene = null
         this.actions = {}
         this.keydonws = {}
@@ -16,9 +15,7 @@ class Game {
         window.addEventListener("keyup", event => {
             this.keydonws[event.key] = "up"
         })
-
         this.init()
-
     }
 
     static instance(...args) {
@@ -58,11 +55,10 @@ class Game {
         // }
         return img
     }
-    
+
     sceneName = () => {
         return this.scene.__proto__.constructor.name
     }
-
 
     runloop = () => {
         var actions = Object.keys(this.actions)
@@ -123,7 +119,6 @@ class Game {
                 }
             }
         }
-
     }
 }
 

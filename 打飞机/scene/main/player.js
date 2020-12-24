@@ -3,12 +3,14 @@ class Player extends FourImage {
         super(game, "player")
         this.setup()
     }
+
     update() {
         this.speed = config.player_speed
         if (this.cooldown > 0) {
             this.cooldown--
         }
     }
+    
     setup() {
         this.speed = 5
         this.cooldown = 0
@@ -17,29 +19,33 @@ class Player extends FourImage {
         this.x = 100
         this.y = 400
     }
+
     moveLeft() {
         this.x -= this.speed
-        if (this.x < 0){
+        if (this.x < 0) {
             this.x = 0
         }
     }
+
     moveRight() {
         this.x += this.speed
-        if (this.x + this.w > 400){
+        if (this.x + this.w > 400) {
             this.x = 400 - this.w
         }
 
     }
+
     moveUp() {
         this.y -= this.speed
-        if(this.y < 0){
+        if (this.y < 0) {
             this.y = 0
         }
     }
+
     moveDown() {
         this.y += this.speed
-        if (this.y + this.h > 600){
-            this.y = 600 -  this.h
+        if (this.y + this.h > 600) {
+            this.y = 600 - this.h
         }
     }
 
@@ -48,7 +54,7 @@ class Player extends FourImage {
             return
         }
         this.cooldown = config.fire_cooldown
-        var x = this.x + this.w/2
+        var x = this.x + this.w / 2
         var y = this.y
         var b = Bullet.new(this.game, "bullet")
         b.x = x - b.w / 2
@@ -60,14 +66,14 @@ class Player extends FourImage {
 
     collide(es) {
         var killed = false
-        for (var i = 0; i < es.length; i++){
+        for (var i = 0; i < es.length; i++) {
             var b = es[i]
             if (this.alive && b.alive) {
-                if (recIntersects(this, b) || recIntersects(b, this)){
-                    if (this.kill()){
+                if (recIntersects(this, b) || recIntersects(b, this)) {
+                    if (this.kill()) {
                         killed = true
                     }
-                } 
+                }
             }
         }
         return killed
@@ -89,6 +95,4 @@ class Player extends FourImage {
         this.scene.addElement(ps)
         log("爆炸")
     }
-
-
 }
