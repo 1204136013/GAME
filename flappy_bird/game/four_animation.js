@@ -1,6 +1,6 @@
-class FourAnimation {
+class FourAnimation extends Gravity {
     constructor(game) {
-        this.game = game
+        super(game)
         // 硬编码一套动画
         this.animations = {
             idle: [],
@@ -21,9 +21,6 @@ class FourAnimation {
         this.frameIndex = 0
         this.frameCount = 6
         this.flipX = false
-        // TODO 重力这里, 应该animaiton是个基类, 继承自他
-        this.gy = 10
-        this.vy = 0
         this.w = this.texture.width
         this.h = this.texture.height
         this.rotation = 0
@@ -37,14 +34,14 @@ class FourAnimation {
         return this.animations[this.AnimationName]
     }
     jump() {
-        if (this.alive){
+        if (this.alive) {
             this.vy = -5
             this.rotation = -45
         }
     }
-    fall(){
+    fall() {
         this.alive = false
-        if (this.vy < 0){
+        if (this.vy < 0) {
             this.vy = 0
         }
     }
@@ -65,8 +62,8 @@ class FourAnimation {
 
     }
 
-    changeFrame(){
-        if (!this.alive){
+    changeFrame() {
+        if (!this.alive) {
             return
         }
         this.frameCount--
@@ -90,9 +87,8 @@ class FourAnimation {
         context.translate(-w2, -h2)
         context.drawImage(this.texture, 0, 0)
         context.restore()
-        // this.game.drawImage(this)
     }
-    
+
     move(x, keyStatus) {
         this.flipX = x < 0
         log("keystatus", keyStatus)
@@ -112,16 +108,16 @@ class FourAnimation {
     collide(p) {
         es = p.pipes
         var killed = false
-        for (var i = 0; i < es.length; i++){
+        for (var i = 0; i < es.length; i++) {
             var b = es[i]
-            if (recIntersects(this, b) || recIntersects(b, this)){
-                if (this.kill()){
+            if (recIntersects(this, b) || recIntersects(b, this)) {
+                if (this.kill()) {
                     killed = true
                 }
-            } 
-            
+            }
+
         }
-        if (this.y >= 495){
+        if (this.y >= 495) {
             killed = true
         }
         return killed
