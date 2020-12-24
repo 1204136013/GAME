@@ -24,26 +24,26 @@ class SceneTitle extends FourScene {
         this.ground = g
         this.addElement(this.ground)
 
-        var t = Title.new(game)
+        var t = Icon.new(game)
         this.addElement(t)
         this.setupInputs()
     }
 
     update() {
-        
+
     }
-    
+
     draw() {
         super.draw()
         this.game.context.fillText("这里是标题界面, 按 k 开始 后 按 j 跳跃", 130, 100)
     }
 
-    back(){
+    back() {
         this.bird.x = 150
         this.bird.y = 190
     }
 
-    stop(){
+    stop() {
         var b = this.bird
         var p = this.pipe
         var g = this.ground
@@ -53,13 +53,13 @@ class SceneTitle extends FourScene {
     }
 
     setupInputs = () => {
-        var e = Scene.new(this.game)   
+        var e = Scene.new(this.game)
         this.game.registerAction("k", () => {
             var gs = this.game.sceneName()
-            if (gs != "SceneTitle"){
+            if (gs != "SceneTitle") {
                 return
             }
-            e.setup()  
+            e.setup()
             log("title 2 main")
             this.game.replaceScene(e)
         })

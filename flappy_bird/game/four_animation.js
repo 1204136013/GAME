@@ -18,6 +18,7 @@ class FourAnimation extends Gravity {
         this.alive = true
         this.lifes = 1
     }
+
     static new(game) {
         return new this(game)
     }
@@ -40,12 +41,14 @@ class FourAnimation extends Gravity {
     frames() {
         return this.animations[this.AnimationName]
     }
+
     jump() {
         if (this.alive) {
             this.vy = -5
             this.rotation = -45
         }
     }
+
     fall() {
         this.alive = false
         if (this.vy < 0) {
@@ -66,7 +69,6 @@ class FourAnimation extends Gravity {
             this.rotation += 5
         }
         this.changeFrame()
-
     }
 
     changeFrame() {
@@ -122,7 +124,6 @@ class FourAnimation extends Gravity {
                     killed = true
                 }
             }
-
         }
         if (this.y >= 495) {
             killed = true

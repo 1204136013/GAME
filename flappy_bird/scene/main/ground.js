@@ -17,7 +17,7 @@ class Grounds {
     }
 
     update() {
-        if (!this.move){
+        if (!this.move) {
             return
         }
         this.skipCount--
@@ -33,13 +33,13 @@ class Grounds {
     }
 
     draw() {
-        for (var x of this.grounds){
+        for (var x of this.grounds) {
             x.draw()
         }
     }
 
-    // 地面停止移动
     stop() {
-        this.move  = false
+    // 地面停止移动
+    this.move = false
     }
 }

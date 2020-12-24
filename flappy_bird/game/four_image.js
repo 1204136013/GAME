@@ -6,13 +6,14 @@ class FourImage {
         this.y = 0
         this.w = this.texture.width
         this.h = this.texture.height
-        //
         this.flipY = false
         this.rotation = 0
     }
+
     draw() {
         this.game.drawImage(this)
     }
+
     static new(game, name) {
         var i = new this(game, name)
         return i
@@ -20,12 +21,5 @@ class FourImage {
 
     update() {
 
-    }   
+    }
 }
-
-// 逻辑上， 不应该继承 GuaImage
-// class Player extends FourImage{
-//     constructor(game, name) {
-        
-//     }
-// }

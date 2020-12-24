@@ -1,4 +1,3 @@
-
 var loadLevel = function (game, n) {
     blocks = []
     n = n - 1
@@ -11,7 +10,7 @@ var loadLevel = function (game, n) {
     return blocks
 }
 
-var enableDebugMode = function (game,enable) {
+var enableDebugMode = function (game, enable) {
     if (!enable) {
         return
     }
@@ -26,7 +25,7 @@ var enableDebugMode = function (game,enable) {
             // blocks = loadLevel(game, Number(k))
         }
     })
-    
+
     // 控制速度
     document.querySelector("#id-input-speed").addEventListener("input", function (event) {
         var input = event.target
@@ -61,7 +60,7 @@ var __main = function () {
     }
     // var scene = Scene(game)
 
-    var game = Game.instance(45, images, function(g){
+    var game = Game.instance(45, images, function (g) {
         // var s = Scene.new(g)
         var s = SceneTitle.new(g)
         g.runWithScene(s)

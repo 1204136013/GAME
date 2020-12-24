@@ -1,4 +1,4 @@
-class Title {
+class Icon {
     constructor(game) {
         this.game = game
         var g = FourImage.new(game, "icon")

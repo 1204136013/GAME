@@ -4,12 +4,14 @@ class FourScene {
         this.elements = []
         this.debugModeEnabled = true
     }
+
     draw() {
         for (var e of this.elements) {
             // this.game.drawImage(e)
             e.draw()
         }
     }
+
     static new(game) {
         // var i = new this(game)
         // return i 
@@ -32,6 +34,7 @@ class FourScene {
         }
 
     }
+
     addElement(img) {
         img.scene = this
         this.elements.push(img)

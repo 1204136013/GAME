@@ -23,7 +23,7 @@ class Pipes {
     }
 
     update() {
-        if (this.move){
+        if (this.move) {
             for (var p of this.pipes) {
                 p.x -= 5
                 if (p.x < -100) {
@@ -58,12 +58,12 @@ class Pipes {
 
     // 管子停止移动
     stop() {
-        this.move  = false
+        this.move = false
     }
 
-    pass(b){
-        for ( var p of this.pipes) {
-            if (b.x > p.x && !p.passed && p.flipY){
+    pass(b) {
+        for (var p of this.pipes) {
+            if (b.x > p.x && !p.passed && p.flipY) {
                 p.passed = true
                 return true
             }

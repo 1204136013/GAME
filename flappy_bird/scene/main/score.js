@@ -3,7 +3,7 @@ class Score {
         this.game = game
         this.score = 0
         this.score_pictures = []
-        for (var i=0; i<10; i++) {
+        for (var i = 0; i < 10; i++) {
             this.score_pictures.push(FourImage.new(game, "n" + i))
         }
     }
@@ -31,14 +31,14 @@ class Score {
     // 将数字的各个数位分离
     parseNumber(n) {
         n = "" + n
-        var r  = []
+        var r = []
         for (var x of n) {
             r.push(+x)
         }
         return r
     }
 
-    add(){
-        this.score ++
+    add() {
+        this.score++
     }
 } 
