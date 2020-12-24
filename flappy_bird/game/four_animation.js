@@ -6,16 +6,7 @@ class FourAnimation extends Gravity {
             idle: [],
             run: [],
         }
-        for (var i = 1; i < 4; i++) {
-            var name = `b${i}`
-            var t = game.textureByName(name)
-            this.animations.run.push(t)
-        }
-        for (var i = 1; i < 4; i++) {
-            var name = `b${i}`
-            var t = game.textureByName(name)
-            this.animations.idle.push(t)
-        }
+        this.importTexture()
         this.AnimationName = "idle"
         this.texture = this.frames()[0]
         this.frameIndex = 0
@@ -30,6 +21,22 @@ class FourAnimation extends Gravity {
     static new(game) {
         return new this(game)
     }
+
+    importTexture() {
+        var game = this.game
+        for (var i = 1; i < 4; i++) {
+            var name = `b${i}`
+            var t = game.textureByName(name)
+            this.animations.run.push(t)
+        }
+        for (var i = 1; i < 4; i++) {
+            var name = `b${i}`
+            var t = game.textureByName(name)
+            this.animations.idle.push(t)
+        }
+
+    }
+
     frames() {
         return this.animations[this.AnimationName]
     }
