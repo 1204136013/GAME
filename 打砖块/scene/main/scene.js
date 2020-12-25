@@ -91,6 +91,7 @@ class Scene extends FourScene {
                 log("ball revert with block")
                 this.ball.revert()
                 this.score = this.score + 100
+                break
             }
         }
 
