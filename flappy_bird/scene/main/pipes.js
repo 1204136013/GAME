@@ -15,6 +15,7 @@ class Pipes {
             this.resetPipesPostion(p1, p2)
             this.pipes.push(p1)
             this.pipes.push(p2)
+            log("管子坐标", p1.x, p2.x)
         }
     }
 
@@ -23,17 +24,18 @@ class Pipes {
     }
 
     update() {
-        for (var i = 0; i < this.pipes.length / 2; i += 2) {
+        for (var i = 0; i <= this.pipes.length / 2 + 1; i += 2) {
             var p1 = this.pipes[i]
             var p2 = this.pipes[i + 1]
+            var deadline = -100
             if (this.move) {
                 p1.x -= 5
                 p2.x -= 5
-                if (p1.x < -100) {
+                if (p1.x < deadline) {
                     p1.x += this.管子横向间距 * this.columsOfPipe
                     p1.passed = false
                 }
-                if (p2.x < -100) {
+                if (p2.x < deadline) {
                     p2.x += this.管子横向间距 * this.columsOfPipe
                     this.resetPipesPostion(p1, p2)
                     p2.passed = false
@@ -67,7 +69,6 @@ class Pipes {
     debug() {
         this.管子横向间距 = config.管子横向间距.value
         this.pipeSpace = config.pipe_space.value
-        log("管子横向间距为", this.管子横向间距)
     }
 
     // 管子停止移动

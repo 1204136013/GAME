@@ -10,9 +10,6 @@ class SceneTitle extends FourScene {
         //bg
         var bg = FourImage.new(game, "bg")
         this.addElement(bg)
-        // 加入管子
-        this.pipe = Pipes.new(game)
-        this.addElement(this.pipe)
         //bird
         var b = FourAnimation.new(game)
         b.x = 150
