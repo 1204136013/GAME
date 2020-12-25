@@ -23,9 +23,13 @@ var Ball = function (game) {
         o.fired = true
     }
 
-    o.revert = function () {
+    o.revert = function (d) {
         log("反弹")
-        o.speedY = -o.speedY
+        if (d == "x") {
+            o. speedX = -o.speedX
+        } else {
+            o.speedY = -o.speedY
+        }
     }
 
     o.hasPoint = function (x, y) {

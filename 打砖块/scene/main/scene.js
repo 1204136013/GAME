@@ -71,44 +71,47 @@ class Scene extends FourScene {
         if (window.paused) {
             return
         }
+        var ball = this.ball
+        var blocks = this.blocks
         // 判断游戏结束
-        if (this.ball.y > this.paddle.y) {
+        if (ball.y > this.paddle.y) {
             // 替换场景到游戏结束
             var end = SceneEnd.new(this.game)
             this.game.replaceScene(end)
         }
-        this.ball.move()
+        ball.move()
         // 判断 ball 和 paddle 相撞
-        if (this.paddle.collide(this.ball)) {
+        if (this.paddle.collide(ball)) {
             // ball.反弹()
-            this.ball.revert()
+            ball.revert()
         }
         // 判断 ball 和 blocks 相撞
-        for (var i = 0; i < this.blocks.length; i++) {
-            var block = this.blocks[i]
-            if (block.collide(this.ball)) {
+        for (var i = 0; i < blocks.length; i++) {
+            var block = blocks[i]
+            var d = block.collide(ball)
+            if (d) {
                 block.kill()
                 log("ball revert with block")
-                this.ball.revert()
+                ball.revert(d)
                 this.score = this.score + 100
             }
         }
 
         // 如果所有砖块都打掉了, 载入下一关
         var dead = 0
-        for (var i = 0; i < this.blocks.length; i++) {
-            var block = this.blocks[i]
+        for (var i = 0; i < blocks.length; i++) {
+            var block = blocks[i]
             if (!block.alive) {
                 dead = dead + 1
             }
         }
 
-        if (dead >= this.blocks.length) {
+        if (dead >= blocks.length) {
             if (this.level < this.level_max) {
                 log("所有砖块消灭了")
                 this.level = this.level + 1
                 log("载入", this.level, "关")
-                this.blocks = loadLevel(this.game, this.level)
+                blocks = loadLevel(this.game, this.level)
             }
             else {
                 var e = SceneEnd.new(this.game)
