@@ -3,27 +3,6 @@ var recIntersects = function (a, b) {
     return !no
 }
 
-var collideRectangle = function (a, b) {
-    if (a.y > b.y) {
-        var lenY = b.image.height - (a.y - b.y)
-    } else {
-        var lenY = a.image.height - (b.y - a.y)
-    }
-
-    if (a.x > b.x) {
-        var lenX = b.image.width - (a.x - b.x)
-    } else {
-        var lenX = a.image.width - (b.x - a.x)
-    }
-
-    if (lenX >= lenY) {
-        return "x"
-    } else {
-        return "y"
-    }
-}
-
-
 var e = sel => document.querySelector(sel)
 
 // var log = function (s) {

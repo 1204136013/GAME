@@ -17,9 +17,8 @@ var Block = function (game, postition) {
     }
 
     o.collide = function (b) {
-        var c = recIntersects(o, b) || recIntersects(b, o)
-        if (o.alive && c) {
-            return collideRectangle(o, b)
+        if (o.alive) {
+            return recIntersects(o, b) || recIntersects(b, o)
         }
         else {
             return false
