@@ -115,6 +115,7 @@ class FourAnimation extends Gravity {
     }
 
     collide(p) {
+        return
         es = p.pipes
         var killed = false
         for (var i = 0; i < es.length; i++) {
